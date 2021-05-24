@@ -1,0 +1,39 @@
+{
+    "expo": {
+        "name": "Maharlika",
+        "description":"",
+        "slug": "maharlika-mobile",
+        "version": "1.0.0",
+        "orientation": "portrait",
+        "icon": "./assets/images/icon.png",
+        "scheme": "myapp",
+        "userInterfaceStyle": "automatic",
+        "splash": {
+            "image": "./assets/images/splash.png",
+            "resizeMode": "cover",
+            "backgroundColor": "#007AFF"
+        },
+        "updates": {
+            "fallbackToCacheTimeout": 0
+        },
+        "assetBundlePatterns": [
+            "**/*"
+        ],
+        "ios": {
+            "supportsTablet": true,
+            "bundleIdentifier": "com.syrichta.maharlika",
+            "userInterfaceStyle": "light"
+        },
+        "android": {
+            "package": "com.syrichta.maharlika",
+            "userInterfaceStyle": "dark",
+            "adaptiveIcon": {
+                "foregroundImage": "./assets/images/adaptive-icon.png",
+                "backgroundColor": "#FFFFFF"
+            }
+        },
+        "web": {
+            "favicon": "./assets/images/favicon.png"
+        }
+    }
+}

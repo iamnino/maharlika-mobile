@@ -1,0 +1,37 @@
+{
+    "WELCOME": "Verwelkoming",
+    "LOGIN": {
+        "EMAIL": "E-mailadres",
+        "PASSWORD": "Wachtwoord",
+        "EMAIL_ERROR": "Voer een geldig e-mailadres in",
+        "PASSWORD_ERROR": "Voer een geldig wachtwoord in",
+        "LOGIN": "Log in",
+        "FORGOT_PASSWORD": "Wachtwoord vergeten?",
+        "RESET_HERE": "Hier resetten",
+        "NO_ACCOUNT": "Nog geen account?",
+        "CREATE_ACCOUNT": "Nieuw account aanmaken",
+        "SETTINGS": "Instellingen",
+        "TERMS": "Algemene Voorwaarden"
+    },
+    "FORGOT_PASSWORD": {
+        "EMAIL": "Voer uw e-mailadres in",
+        "EMAIL_ERROR": "Voer een geldig e-mailadres in",
+        "RESET_HERE": "Wachtwoord opnieuw instellen",
+        "HEADER_TITLE": "Wachtwoord opnieuw instellen"
+    },
+    "ERRORS": {
+        "COMMON_ERROR": "Kan geen verbinding maken met Woot Server, probeer het later opnieuw",
+        "OFFLINE": "U moet verbinding maken met Wi-Fi of een mobiel netwerk om weer online te kunnen komen",
+        "CANNOT_FETCH": "Er is een fout opgetreden bij het ophalen van de informatie, probeer het opnieuw",
+        "AUTH": "Gebruikersnaam / wachtwoord onjuist. Probeer het opnieuw"
+    },
+    "SUCCESS": {
+        "AUTH": "Login succesvol"
+    },
+    "EXIT": {
+        "TITLE": "Afsluiten",
+        "SUBTITLE": "Weet u zeker dat u wilt afsluiten?",
+        "CANCEL": "annuleren",
+        "OK": "OK"
+    }
+}
