@@ -16,15 +16,65 @@ export const styles = StyleSheet.create({
     },
     scroll: {},
     container: {
-        paddingVertical: 25,
+        paddingVertical: 18,
         paddingHorizontal: 16
     },
-    wrapper: {
-        ...flex.on,
-        ...justify.center
+
+    // TODO: Create Separate Components
+    headerContainter: {
+        width: '100%',
+        // paddingHorizontal: 16
+    },
+    headerWrapper: {
+        ...flex.row,
+        ...align.end,
+        height: 45,
+        // backgroundColor: 'red',
+        paddingLeft: 16
+    },
+    headerBrand: {
+        width: 32,
+        height: 32,
+        backgroundColor: '#387CFE',
+        marginRight: 8,
+        borderRadius: 5,
+    },
+    headerTitle: {
+        fontSize: IS_MONOBROW ? 21: 24,
+        // lineHeight: 29,
+        marginRight: 12,
+        // borderWidth: 1,
+        // borderColor: 'red',
+        textAlignVertical: 'bottom',
     },
 
-     // TODO: Separate Components
+    // TODO: Create Separate Components
+
+    tabContainer: {
+        // borderWidth: 1,
+        // borderColor: 'red'
+    },
+    tabWrapper: {
+        ...flex.row,
+        paddingBottom: 3
+    },
+    tab: {
+        marginRight: 8
+    },
+    tabLabel: {
+        fontSize: IS_MONOBROW ? 14: 16,
+        lineHeight: 21,
+        // borderWidth: 1,
+        // borderColor: 'red',
+        textAlignVertical: 'bottom',
+        opacity: 0.5,
+        paddingHorizontal: 3
+    },
+    tabActive: {
+        opacity: 1
+    },
+
+    // TODO: Create Separate Components
     card: {
         ...shadow.card,
         // height: 100, 
@@ -107,7 +157,7 @@ export const styles = StyleSheet.create({
         lineHeight: IS_MONOBROW ? 16: 18
     },
 
-    // TODO: Separate Components
+    // TODO: Create Separate Components
     cardActions: {
         paddingHorizontal: 12,
         paddingBottom: 8
@@ -120,7 +170,7 @@ export const styles = StyleSheet.create({
     cardActionButton: {
         backgroundColor: '#387CFE',
         paddingHorizontal: 10,
-        paddingTop: 5,
+        paddingTop: 4,
         paddingBottom: 4,
         borderRadius: 40
     },

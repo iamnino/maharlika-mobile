@@ -21,10 +21,45 @@ const Events = (props: any) => {
         navigation.navigate(screen, params);
     }
 
+    const [activeTab, setActiveTab] = useState<string>('all');
+
+    const activeTabStyle = (key: string) => {
+        return activeTab === key ? styles.tabActive: {};
+    }
+
     return (
         <SafeAreaView style={styles.safearea} edges={['top']}>
             <View style={styles.layout}>
-                {/* <Text label={'Account View'} /> */}
+
+                <View style={styles.headerContainter}>
+                    <View style={styles.headerWrapper}>
+                        <View style={styles.headerBrand} />
+                        <Text label={'Events'} type={'bold'} 
+                            style={styles.headerTitle} />
+
+                        <View style={styles.tabContainer}>
+                            <View style={styles.tabWrapper}>
+                                <Pressable style={styles.tab} onPress={() => setActiveTab('all')}>
+                                    <Text label={'All'} type={'medium'} 
+                                        style={{...styles.tabLabel, ...activeTabStyle('all') }} />
+                                </Pressable>
+                                <Pressable style={styles.tab} onPress={() => setActiveTab('recent')}>
+                                    <Text label={'Recently Added'} type={'medium'} 
+                                        style={{...styles.tabLabel, ...activeTabStyle('recent') }} />
+                                </Pressable>
+                                <Pressable style={styles.tab} onPress={() => setActiveTab('upcoming')}>
+                                    <Text label={'Upcoming'} type={'medium'} 
+                                        style={{...styles.tabLabel, ...activeTabStyle('upcoming') }} />
+                                </Pressable>
+                                <Pressable style={styles.tab} onPress={() => setActiveTab('completed')}>
+                                    <Text label={'Completed'} type={'medium'} 
+                                        style={{...styles.tabLabel, ...activeTabStyle('completed') }} />
+                                </Pressable>
+                            </View>
+                        </View>
+
+                    </View>
+                </View>
 
                 <View style={styles.container}>
 
