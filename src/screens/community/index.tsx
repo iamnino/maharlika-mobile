@@ -10,7 +10,7 @@ import { styles } from './styles';
 // Components
 import Text from '../../components/text';
 
-const Account = (props: any) => {
+const Community = (props: any) => {
     const { navigation, route }: any = props;
     const { params } = route;
 
@@ -21,16 +21,10 @@ const Account = (props: any) => {
     return (
         <SafeAreaView style={styles.safearea} edges={['top']}>
             <View style={styles.layout}>
-                {/* <Text label={'Account View'} /> */}
-
-                <View style={styles.container}>
-                    <View style={styles.card}>
-                    </View>
-                </View>
-                
+                <Text label={'Community View'} />
             </View>
         </SafeAreaView>
     )
 }
 
-export default Account;
+export default Community;

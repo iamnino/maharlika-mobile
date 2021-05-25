@@ -8,7 +8,7 @@ import { bg, flex } from '../../styles/global.styles';
 
 // Icons
 import HomeIcon from '../icons/home';
-import SearchIcon from '../icons/search';
+import UsersIcon from '../icons/users';
 import CalendarIcon from '../icons/calendar';
 import LifeBouyIcon from '../icons/life-bouy';
 import SmileIcon from '../icons/smile';
@@ -18,12 +18,10 @@ import Text from '../text';
 
 // Tabs Screens
 import Home from '../../screens/home';
-import Search from '../../screens/search';
+import Community from '../../screens/community';
 import Events from '../../screens/events';
 import Activity from '../../screens/activity';
 import Account from '../../screens/account';
-
-
 
 // Custom Styles
 const styles = StyleSheet.create({
@@ -33,8 +31,6 @@ const styles = StyleSheet.create({
     },
     navigation: {
         height: 55,
-        // borderTopColor: "#E5E5EA",
-        // borderTopWidth: 1,
         shadowColor: "#000000",
         shadowOffset: { width: 0, height: -5 },
         shadowOpacity: 0.05,
@@ -87,12 +83,12 @@ const TabBar = ({ navigation, state }: any) => {
             <BottomNavigationTab
                 title={() => <Label label={'Home'} value={'Home'} />}
                 icon={() => <HomeIcon color={setColor('Home')} size={24} style={styles.border}/> }/>
-            <BottomNavigationTab
-                title={() => <Label label={'Search'} value={'Search'} />}
-                icon={() => <SearchIcon color={setColor('Search')} size={24} style={styles.border}/> }/>
              <BottomNavigationTab
                 title={() => <Label label={'Events'} value={'Events'} />}
                 icon={() => <CalendarIcon color={setColor('Events')} size={24} style={styles.border}/> }/>
+            <BottomNavigationTab
+                title={() => <Label label={'Community'} value={'Community'} />}
+                icon={() => <UsersIcon color={setColor('Community')} size={24} style={styles.border}/> }/>
             <BottomNavigationTab
                 title={() => <Label label={'Activity'} value={'Activity'} />}
                 icon={() => <LifeBouyIcon color={setColor('Activity')} size={24} style={styles.border}/> }/>
@@ -108,8 +104,8 @@ const TabNavigation = () => (
     <SafeAreaView style={styles.wrapper} edges={['right', 'bottom', 'left']}>
         <Navigator tabBar={(props) => <TabBar {...props} />}>
             <Screen name='Home' component={Home} />
-            <Screen name='Search' component={Search} />
             <Screen name='Events' component={Events} />
+            <Screen name='Community' component={Community} />
             <Screen name='Activity' component={Activity} />
             <Screen name='Account' component={Account} />
         </Navigator>

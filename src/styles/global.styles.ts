@@ -39,7 +39,8 @@ export const color = StyleSheet.create({
 });
 
 // Background Color
-export const bg = StyleSheet.create({ 
+export const bg = StyleSheet.create({
+    base: { backgroundColor: '#F8F8FD' },
     white: { backgroundColor: '#FFFFFF' },
     primary: { backgroundColor: '#FFCC00' }
 });
@@ -64,3 +65,11 @@ export const resizeMode = StyleSheet.create({
     cover: { resizeMode: 'cover' },
     repeat: { resizeMode: 'repeat' },
 });
+
+export const shadow = StyleSheet.create({
+    card: {
+        shadowColor: "#000000",
+        shadowOffset: { width: 0, height: 5 },
+        shadowOpacity: 0.05
+    }
+})
