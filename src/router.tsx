@@ -60,9 +60,8 @@ const Router = () => {
             <SafeAreaProvider>
                 <NavigationContainer ref={navigationRef}>
                     <Navigator initialRouteName={isLoggedIn ? 'Tab' : 'Auth::Intro'} headerMode={'none'}>
-                        { isLoggedIn &&
+                        { !isLoggedIn &&
                             <Fragment>
-                                {/* <Screen name="OnBoarding" component={OnBoarding} options={transitionSlide}/> */}
                                 <Screen name="Tab" component={TabNavigation} options={transitionSlide}/>
                                 <Screen name="Post" component={Post} options={transitionSlide}/>
                                 <Screen name="Filter" component={Filter} options={transitionSlide}/>
@@ -74,7 +73,7 @@ const Router = () => {
                                 <Screen name="Category::Lists" component={CategoryLists} options={transitionSlide}/>
                             </Fragment>
                         }
-                        { !isLoggedIn &&
+                        { isLoggedIn &&
                             <Fragment>
                                 <Screen name="Auth::Intro" component={Intro} options={transitionSlide}/>
                                 <Screen name="Auth::Mobile" component={Mobile} options={transitionSlide}/>

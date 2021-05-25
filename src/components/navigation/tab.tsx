@@ -6,31 +6,30 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { bg, flex } from '../../styles/global.styles';
 
-// Colors
-import Colors from '../../constants/colors';
-
 // Icons
-import CaptureIcon from '../icons/capture';
-import ChatIcon from '../icons/chat';
-import PinIcon from '../icons/pin';
+import HomeIcon from '../icons/home';
+import SearchIcon from '../icons/search';
+import CalendarIcon from '../icons/calendar';
+import LifeBouyIcon from '../icons/life-bouy';
 import SmileIcon from '../icons/smile';
-import StoreIcon from '../icons/store';
 
 // Components
 import Text from '../text';
 
 // Tabs Screens
+import Home from '../../screens/home';
+import Search from '../../screens/search';
+import Events from '../../screens/events';
+import Activity from '../../screens/activity';
 import Account from '../../screens/account';
-import Explore from '../../screens/explore';
-import Create from '../../screens/create';
-import Nearby from '../../screens/nearby';
-import Messages from '../../screens/messages';
+
+
 
 // Custom Styles
 const styles = StyleSheet.create({
     wrapper: {
         ...flex.on,
-        ...bg.white
+        backgroundColor: '#387CFE'
     },
     navigation: {
         height: 55,
@@ -39,14 +38,19 @@ const styles = StyleSheet.create({
         shadowColor: "#000000",
         shadowOffset: { width: 0, height: -5 },
         shadowOpacity: 0.05,
+        backgroundColor: '#387CFE'
     },
     text: {
         marginTop: 0,
-        fontSize: 12,
-        color: Colors.light.tabIconDefault
+        fontSize: 13.5,
+        color: '#FFFFFF',
+        opacity: 0.5
     },
     activeText: {
-        color: Colors.light.tabIconSelected
+        opacity: 1
+    },
+    border: {
+        marginBottom: 1.5
     }
 });
 
@@ -65,10 +69,14 @@ const TabBar = ({ navigation, state }: any) => {
 
     const Label: any = (props: any) => {
         return (
-            <Text label={props.label} type={'semiBold'} 
+            <Text label={props.label} type={'medium'} 
                 style={{...styles.text, ...(isActive(props.value) ? styles.activeText : {}) }}/>
         )
     };
+
+    const setColor: any = (key: string) => {
+        return isActive(key) ? '#FFFFFF': '#9BBDFE';
+    }
 
     return (
         <BottomNavigation
@@ -77,20 +85,20 @@ const TabBar = ({ navigation, state }: any) => {
             selectedIndex={state.index}
             onSelect={onSelect}>
             <BottomNavigationTab
-                title={() => <Label label={'Explore'} value={'Explore'} />}
-                icon={() => <StoreIcon active={isActive("Explore")} width={29} height={29} />} />
+                title={() => <Label label={'Home'} value={'Home'} />}
+                icon={() => <HomeIcon color={setColor('Home')} size={24} style={styles.border}/> }/>
             <BottomNavigationTab
-                title={() => <Label label={'Nearby'} value={'Nearby'} />}
-                icon={() => <PinIcon active={isActive("Nearby")} width={29} height={29} />} />
+                title={() => <Label label={'Search'} value={'Search'} />}
+                icon={() => <SearchIcon color={setColor('Search')} size={24} style={styles.border}/> }/>
              <BottomNavigationTab
-                title={() => <Label label={'Create'} value={'Create'} />}
-                icon={() => <CaptureIcon active={isActive("Create")} width={29} height={29} />} />
+                title={() => <Label label={'Events'} value={'Events'} />}
+                icon={() => <CalendarIcon color={setColor('Events')} size={24} style={styles.border}/> }/>
             <BottomNavigationTab
-                title={() => <Label label={'Messages'} value={'Messages'} />}
-                icon={() => <ChatIcon active={isActive("Messages")} width={29} height={29} />} />
+                title={() => <Label label={'Activity'} value={'Activity'} />}
+                icon={() => <LifeBouyIcon color={setColor('Activity')} size={24} style={styles.border}/> }/>
             <BottomNavigationTab
                 title={() => <Label label={'Account'} value={'Account'} />}
-                icon={() => <SmileIcon active={isActive("Account")} width={29} height={29} />} />
+                icon={() => <SmileIcon color={setColor('Account')} size={24} style={styles.border}/> }/>
         </BottomNavigation>
     )
 };
@@ -99,10 +107,10 @@ const TabBar = ({ navigation, state }: any) => {
 const TabNavigation = () => (
     <SafeAreaView style={styles.wrapper} edges={['right', 'bottom', 'left']}>
         <Navigator tabBar={(props) => <TabBar {...props} />}>
-            <Screen name='Explore' component={Explore} />
-            <Screen name='Nearby' component={Nearby} />
-            <Screen name='Create' component={Create} />
-            <Screen name='Messages' component={Messages} />
+            <Screen name='Home' component={Home} />
+            <Screen name='Search' component={Search} />
+            <Screen name='Events' component={Events} />
+            <Screen name='Activity' component={Activity} />
             <Screen name='Account' component={Account} />
         </Navigator>
     </SafeAreaView>

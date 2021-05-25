@@ -14,9 +14,7 @@ import Text from '../../components/text';
 // Icons
 import ArchieveIcon from '../../components/icons/archieve';
 import BellIcon from '../../components/icons/bell';
-import ShoppingBagIcon from '../../components/icons/shopping-bag';
 import StarIcon from '../../components/icons/star';
-import CarWashIcon from '../../components/icons/car-wash';
 import PaintRollerIcon from '../../components/icons/paint-roller';
 import QRScanIcon from '../../components/icons/qr-scan';
 import TagIcon from '../../components/icons/tag';
