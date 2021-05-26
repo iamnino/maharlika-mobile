@@ -1,14 +1,14 @@
 import { StyleSheet } from 'react-native';
 import { flex, justify, bg, font } from '../../styles/global.styles';
 
-export const styles = StyleSheet.create({ 
+const styles = StyleSheet.create({ 
     safearea: {
         ...flex.on,
-        ...bg.white
+        ...bg.base
     },
     layout: {
         ...flex.on,
-        ...bg.white,
+        ...bg.base,
     },
     scroll: {},
     container: {
@@ -18,3 +18,5 @@ export const styles = StyleSheet.create({
         ...justify.center
     },
 });
+
+export default styles;

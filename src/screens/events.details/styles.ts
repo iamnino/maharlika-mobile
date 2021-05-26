@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { flex, justify, bg, font } from '../../styles/global.styles';
+import { flex, justify, bg, font, shadow } from '../../styles/global.styles';
 
 export const styles = StyleSheet.create({ 
     safearea: {
@@ -12,9 +12,18 @@ export const styles = StyleSheet.create({
     },
     scroll: {},
     container: {
+        paddingVertical: 25,
+        paddingHorizontal: 16
     },
     wrapper: {
         ...flex.on,
         ...justify.center
     },
+    card: {
+        ...shadow.card,
+        height: 100, 
+        width: '100%', 
+        backgroundColor: '#FFF',
+        borderRadius: 8
+    }
 });

@@ -27,14 +27,14 @@ import Account from '../../screens/account';
 const styles = StyleSheet.create({
     wrapper: {
         ...flex.on,
-        backgroundColor: '#387CFE'
+        backgroundColor: '#1abc9c'
     },
     navigation: {
         height: 55,
         shadowColor: "#000000",
         shadowOffset: { width: 0, height: -5 },
         shadowOpacity: 0.05,
-        backgroundColor: '#387CFE'
+        backgroundColor: '#1abc9c'
     },
     text: {
         marginTop: 0,
@@ -71,7 +71,7 @@ const TabBar = ({ navigation, state }: any) => {
     };
 
     const setColor: any = (key: string) => {
-        return isActive(key) ? '#FFFFFF': '#9BBDFE';
+        return isActive(key) ? '#FFFFFF': '#AFE7DC';
     }
 
     return (

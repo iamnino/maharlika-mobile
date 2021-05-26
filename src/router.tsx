@@ -21,6 +21,9 @@ import {
 import TabNavigation from './components/navigation/tab';
 
 // Screens
+import EventCreate from './screens/events.create';
+import EventDetails from './screens/events.details';
+
 import Post from './screens/post';
 import Filter from './screens/filter';
 import Search from './screens/search';
@@ -38,8 +41,6 @@ import Intro from './screens/auth/auth.intro';
 import Mobile from './screens/auth/auth.mobile';
 import Photo from './screens/auth/auth.photo';
 import Username from './screens/auth/auth.username';
-
-import OnBoarding from './screens/onboarding';
 
 const { Navigator, Screen } = createStackNavigator();
 
@@ -63,6 +64,9 @@ const Router = () => {
                         { !isLoggedIn &&
                             <Fragment>
                                 <Screen name="Tab" component={TabNavigation} options={transitionSlide}/>
+                                <Screen name="Event::Create" component={EventCreate} options={transitionSlide}/>
+                                <Screen name="Event::Details" component={EventCreate} options={transitionSlide}/>
+
                                 <Screen name="Post" component={Post} options={transitionSlide}/>
                                 <Screen name="Filter" component={Filter} options={transitionSlide}/>
                                 <Screen name="Search" component={Search} options={transitionSlide}/>

@@ -60,7 +60,7 @@ const SearchInput = (props: any) => {
     return (
         <View style={[styles.container, containerStyle]}>
             <View style={styles.wrapper}>
-                <SearchIcon width={18} height={18} color={'#66666D'}/>
+                <SearchIcon size={18} color={'#66666D'}/>
                 <View style={styles.textbox}>
                     <TextInput 
                         style={styles.input}

@@ -9,6 +9,7 @@ import { styles } from './styles';
 
 // Components
 import Text from '../../components/text';
+import Header from '../../components/navigation/header';
 
 const Activity = (props: any) => {
     const { navigation, route }: any = props;
@@ -21,7 +22,7 @@ const Activity = (props: any) => {
     return (
         <SafeAreaView style={styles.safearea} edges={['top']}>
             <View style={styles.layout}>
-                <Text label={'Activity View'} />
+                <Header title={'Activity'} />
             </View>
         </SafeAreaView>
     )

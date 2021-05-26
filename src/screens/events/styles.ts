@@ -1,7 +1,16 @@
 import { StyleSheet } from 'react-native';
-import { flex, justify, bg, font, shadow, align, resizeMode } from '../../styles/global.styles';
+import { isIPhoneWithMonobrow } from 'react-native-status-bar-height';
 
-import { getStatusBarHeight, isIPhoneWithMonobrow } from 'react-native-status-bar-height';
+// Global Styles
+import { 
+    flex, 
+    justify, 
+    bg, 
+    font, 
+    shadow, 
+    align, 
+    resizeMode 
+} from '../../styles/global.styles';
 
 const IS_MONOBROW = isIPhoneWithMonobrow();
 
@@ -16,7 +25,7 @@ export const styles = StyleSheet.create({
     },
     scroll: {},
     container: {
-        paddingVertical: 18,
+        paddingBottom: 18,
         paddingHorizontal: 16
     },
 
@@ -88,7 +97,7 @@ export const styles = StyleSheet.create({
         overflow: 'hidden'
     },
     cardImageWrapper: {
-        height: 100, 
+        height: 145, 
         width: '100%', 
         backgroundColor: '#E9E9E9',
         position: 'relative'
@@ -153,14 +162,15 @@ export const styles = StyleSheet.create({
     },
     cardContextDescription: {
         color: '#000000',
-        fontSize: IS_MONOBROW ? 14: 16,
+        fontSize: IS_MONOBROW ? 13.5: 16,
         lineHeight: IS_MONOBROW ? 16: 18
     },
 
     // TODO: Create Separate Components
     cardActions: {
         paddingHorizontal: 12,
-        paddingBottom: 8
+        paddingBottom: 8,
+        paddingTop: 12
     },
     cardAction: {
         ...flex.row,

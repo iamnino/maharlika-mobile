@@ -1,15 +1,16 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Pressable, TextInput, View } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
+import { GiftedChat, IMessage, MessageProps } from 'react-native-gifted-chat'
 
 // Screen Styles
 import { styles } from './styles';
 
 // Components
 import Text from '../../components/text';
-import Header from '../../components/navigation/header';
 
-const Account = (props: any) => {
+const EventDetails = (props: any) => {
     const { navigation, route }: any = props;
     const { params } = route;
 
@@ -20,10 +21,16 @@ const Account = (props: any) => {
     return (
         <SafeAreaView style={styles.safearea} edges={['top']}>
             <View style={styles.layout}>
-                <Header title={'Account'} />
+                {/* <Text label={'EventDetails View'} /> */}
+
+                <View style={styles.container}>
+                    <View style={styles.card}>
+                    </View>
+                </View>
+                
             </View>
         </SafeAreaView>
     )
 }
 
-export default Account;
+export default EventDetails;

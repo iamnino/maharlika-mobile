@@ -1,118 +1,97 @@
-import React, { useEffect } from 'react';
-import { Pressable, StyleSheet, View } from 'react-native';
 import PropTypes from 'prop-types';
+import React, { useEffect, useState, memo } from 'react';
+import { Pressable, StyleSheet, View } from 'react-native';
+import { isIPhoneWithMonobrow } from 'react-native-status-bar-height';
+import isEmpty from 'lodash/isEmpty';
 
-import { align, bg, color, flex, justify } from '../../styles/global.styles';
+const IS_MONOBROW = isIPhoneWithMonobrow();
+
+// Global Styles
+import { 
+    flex, 
+    justify, 
+    bg, 
+    font, 
+    shadow, 
+    align, 
+    resizeMode, 
+    color
+} from '../../styles/global.styles';
 
 // Icons
-import SearchIcon from '../icons/search';
+import PlusIcon from '../icons/plus';
 // import BellIcon from '../icons/bell';
 
 // Components
 import Text from '../text';
-import { BackButton } from '../buttons';
+import Tabs from '../tabs';
 
 // Styles
 const styles = StyleSheet.create({
+    // TODO: Create Separate Components
     container: {
-        ...bg.white,
-        ...flex.row,
-        paddingTop: 10,
-        paddingHorizontal: 18,
-        // borderWidth: 1
+        width: '100%',
+        paddingBottom: 12
     },
     wrapper: {
+    },
+    context: {
         ...flex.row,
         ...align.center,
         ...justify.spaceBetween,
-        width: '100%',
-        height: 40,
-        // borderWidth: 1
-    },
-    content: {
-        ...flex.row,
-        ...align.center,
-    },
-    actions: {
-        ...flex.row,
-        ...align.center,
-    },
-    action: {
-        position: 'relative',
-        padding: 2
+        paddingHorizontal: 16,
+        paddingTop: 5,
+        paddingBottom: 8,
+        // borderWidth: 1,
+        // borderColor: 'red'
     },
     title: {
-        fontSize: 29,
-        color: '#282A2B'
+        fontSize: IS_MONOBROW ? 24: 29,
+        marginRight: 12,
+        textAlignVertical: 'bottom',
+        color: '#16a085',
     },
-    spacer: {
+    create: {
         ...flex.row,
-        width: 8,
-        height: 18
+        ...align.center
     },
-    indicator: {
-        backgroundColor: '#FF375F',
-        height: 5,
-        width: 5,
-        borderRadius: 5,
-        position: 'absolute',
-        right: 0
+    label: {
+        color: '#95a5a6',
+        fontSize: IS_MONOBROW ? 16: 18,
+        marginLeft: 2
     }
 });
 
 const propTypes = {
     title: PropTypes.string,
-    search: PropTypes.bool,
-    back: PropTypes.bool,
-    notification: PropTypes.bool,
-    onPressSearch: PropTypes.func,
-    onPressBack: PropTypes.func,
-    onPressNotification: PropTypes.func,
-    labelStyles: PropTypes.any
+    tabs: PropTypes.array,
+    onPressCreate: PropTypes.func
 };
 
 const defaultProps = {
     title: '',
-    search: false,
-    back: false,
-    notification: false,
-    onPressSearch: null,
-    onPressBack: null,
-    onPressNotification: null,
-    labelStyles: {}
+    tabs: [],
+    onPressCreate: null
 };
 
 const HeaderNavigation = (props: any) => {
-
-    const { 
-        title, search, back, notification, 
-        onPressSearch, onPressBack, onPressNotification,
-        labelStyles
-    } = props;
-
+    const { title, tabs, onPressCreate } = props;
 	return (
         <View style={styles.container}>
             <View style={styles.wrapper}>
-                <View style={styles.content}>
-                    { back && <BackButton onPress={onPressBack}/> }
-                    <Text label={title} type={'bold'} style={{...styles.title, ...labelStyles}}/>
-                </View>
-                <View style={styles.actions}>
-                    { search && 
-                        <Pressable onPress={onPressSearch} style={styles.action}>
-                            <SearchIcon color={'#66666D'} width={24} height={24} />
+                <View style={styles.context}>
+                    <Text label={title} type={'bold'} style={styles.title} />
+                    { onPressCreate &&
+                        <Pressable style={styles.create}>
+                            <PlusIcon size={16} color={'#95a5a6'}/>
+                            <Text label={'Create'} type={'medium'}
+                                style={styles.label}/>
                         </Pressable>
                     }
-                    
-                    {/* { search && notification && <View style={styles.spacer}/> }
-
-                    { notification && 
-                        <Pressable onPress={onPressNotification} style={styles.action}>
-                            <View style={styles.indicator}/>
-                            <BellIcon color={'#66666D'}/>
-                        </Pressable>
-                    } */}
                 </View>
+                { !isEmpty(tabs) &&
+                    <Tabs data={tabs} />
+                }
             </View>
         </View>
 	)
@@ -121,4 +100,4 @@ const HeaderNavigation = (props: any) => {
 HeaderNavigation.propTypes = propTypes;
 HeaderNavigation.defaultProps = defaultProps;
 
-export default React.memo(HeaderNavigation);
+export default memo(HeaderNavigation);

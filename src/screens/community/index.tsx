@@ -1,14 +1,13 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Pressable, TextInput, View } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
-import { GiftedChat, IMessage, MessageProps } from 'react-native-gifted-chat'
 
 // Screen Styles
 import { styles } from './styles';
 
 // Components
 import Text from '../../components/text';
+import Header from '../../components/navigation/header';
 
 const Community = (props: any) => {
     const { navigation, route }: any = props;
@@ -21,7 +20,7 @@ const Community = (props: any) => {
     return (
         <SafeAreaView style={styles.safearea} edges={['top']}>
             <View style={styles.layout}>
-                <Text label={'Community View'} />
+                <Header title={'Community'} />
             </View>
         </SafeAreaView>
     )

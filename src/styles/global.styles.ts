@@ -69,7 +69,7 @@ export const resizeMode = StyleSheet.create({
 export const shadow = StyleSheet.create({
     card: {
         shadowColor: "#000000",
-        shadowOffset: { width: 0, height: 5 },
-        shadowOpacity: 0.05
+        shadowOffset: { width: 0, height: 3 },
+        shadowOpacity: 0.03
     }
 })
