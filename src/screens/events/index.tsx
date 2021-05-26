@@ -38,14 +38,23 @@ const Events = (props: any) => {
     ]
 
     const renderItem = ({ item, index }: any) => {
-
         let style: any = { marginBottom: 15 };
 
         if(data.length === index + 1) {
             style = {} 
         }
 
-        return <CardEvent containerStyle={style} />
+        const onPress = () => {
+            console.log(item);
+            navigate('Event::Details', item);
+        }
+
+        return (
+            <CardEvent 
+                containerStyle={style}
+                onPress={onPress}
+            />
+        )
     }
 
     return (

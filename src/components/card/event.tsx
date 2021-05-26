@@ -116,19 +116,21 @@ export const styles = StyleSheet.create({
 
 const propTypes = {
     data: PropTypes.any,
-    containerStyle: PropTypes.any
+    containerStyle: PropTypes.any,
+    onPress: PropTypes.func
 };
 
 const defaultProps = {
     data: {},
-    containerStyle: {}
+    containerStyle: {},
+    onPress: null
 };
 
 const CardEvent = (props: any) => {
-    const { data, containerStyle }: any = props;
+    const { data, containerStyle, onPress }: any = props;
     
     return (
-        <Pressable style={[styles.container, containerStyle]} onPress={null}>
+        <Pressable style={[styles.container, containerStyle]} onPress={onPress}>
             <View style={styles.wrapper}>
 
                 <View style={styles.context}>
