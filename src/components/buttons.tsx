@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Pressable, StyleSheet } from 'react-native';
 import * as Animatable from 'react-native-animatable';
+import { isIPhoneWithMonobrow } from 'react-native-status-bar-height';
 
 import { align, flex, justify } from '../styles/global.styles';
 
@@ -8,6 +9,10 @@ import { align, flex, justify } from '../styles/global.styles';
 import HeartIcon from '../components/icons/heart';
 import BackIcon from '../components/icons/back';
 import SearchIcon from '../components/icons/search';
+import Text from './text';
+
+// Constant
+const IS_MONOBROW = isIPhoneWithMonobrow();
 
 export const styles = StyleSheet.create({ 
     back: {
@@ -33,6 +38,18 @@ export const styles = StyleSheet.create({
         borderRadius: 25,
         // backgroundColor: '#00000040',
         backgroundColor: '#ffffff40',
+    },
+    action: {
+        backgroundColor: '#FF2D55',
+        paddingHorizontal: 10,
+        paddingTop: 3,
+        paddingBottom: 3,
+        borderRadius: 40
+    },
+    label: {
+        color: '#FFFFFF',
+        fontSize: IS_MONOBROW ? 13: 16,
+        lineHeight: 21
     }
 });
 
@@ -52,6 +69,15 @@ export const LikeButton = (props: any) => {
             <Animatable.View easing={'ease-out'} animation={ active ? 'tada': 'swing' } style={styles.heart}>
                 <HeartIcon active={active} color={'#fff'} height={21} width={21}/>
             </Animatable.View>
+        </Pressable>
+    )
+}
+
+export const Action = (props: any) => {
+    const { label, onPress } = props;
+    return (
+        <Pressable onPress={onPress} style={styles.action}>
+            <Text label={label} type={'medium'} style={styles.label}/>
         </Pressable>
     )
 }

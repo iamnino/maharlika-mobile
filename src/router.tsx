@@ -65,7 +65,7 @@ const Router = () => {
                             <Fragment>
                                 <Screen name="Tab" component={TabNavigation} options={transitionSlide}/>
                                 <Screen name="Event::Create" component={EventCreate} options={transitionSlide}/>
-                                <Screen name="Event::Details" component={EventCreate} options={transitionSlide}/>
+                                <Screen name="Event::Details" component={EventDetails} options={transitionSlide}/>
 
                                 <Screen name="Post" component={Post} options={transitionSlide}/>
                                 <Screen name="Filter" component={Filter} options={transitionSlide}/>

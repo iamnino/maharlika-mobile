@@ -25,15 +25,17 @@ const styles = StyleSheet.create({
 });
 
 const propTypes = {
-    data: PropTypes.any
+    data: PropTypes.any,
+    containerStyle: PropTypes.any
 };
 
 const defaultProps = {
-    data: []
+    data: [],
+    containerStyle: {}
 };
 
 const Tabs = (props: any) => {
-    const { data } = props;
+    const { data, containerStyle } = props;
 
     const renderItem = ({ item, index }: any) => {
 
@@ -47,7 +49,7 @@ const Tabs = (props: any) => {
     }
 
 	return (
-        <View style={styles.container}>
+        <View style={[styles.container, containerStyle]}>
             <FlatList 
                 horizontal={true}
                 contentContainerStyle={styles.wrapper}

@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     // TODO: Create Separate Components
     container: {
         width: '100%',
-        paddingBottom: 12
+        paddingBottom: 8
     },
     wrapper: {
     },
@@ -82,7 +82,7 @@ const HeaderNavigation = (props: any) => {
                 <View style={styles.context}>
                     <Text label={title} type={'bold'} style={styles.title} />
                     { onPressCreate &&
-                        <Pressable style={styles.create}>
+                        <Pressable style={styles.create} onPress={onPressCreate}>
                             <PlusIcon size={16} color={'#95a5a6'}/>
                             <Text label={'Create'} type={'medium'}
                                 style={styles.label}/>

@@ -2,13 +2,14 @@ import React, { useState, memo } from 'react';
 import { Image, Pressable, View } from 'react-native';
 import { StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
-import { getStatusBarHeight, isIPhoneWithMonobrow } from 'react-native-status-bar-height';
+import { isIPhoneWithMonobrow } from 'react-native-status-bar-height';
 
 const IS_MONOBROW = isIPhoneWithMonobrow();
 
 // Components
 import Text from '../text';
 import Progress from '../progress';
+import { Action } from '../buttons';
 
 // Constants
 import Images from '../../constants/images';
@@ -90,28 +91,16 @@ export const styles = StyleSheet.create({
     },
 
     // TODO: Create Separate Components
-    cardActions: {
+    actions: {
         paddingHorizontal: 12,
         paddingBottom: 8,
         paddingTop: 12
     },
-    cardAction: {
+    action: {
         ...flex.row,
         ...justify.spaceBetween,
         marginBottom: 8
-    },
-    cardActionButton: {
-        backgroundColor: '#FF2D55',
-        paddingHorizontal: 10,
-        paddingTop: 4,
-        paddingBottom: 4,
-        borderRadius: 40
-    },
-    cardActionButtonLabel: {
-        color: '#FFFFFF',
-        fontSize: IS_MONOBROW ? 13: 16,
-        lineHeight: 21
-    },
+    }
 });
 
 const propTypes = {
@@ -148,7 +137,7 @@ const CardEvent = (props: any) => {
                         </View>
                     </View>
                     <View style={styles.contextDescriptionWrapper}>
-                        <Text label={'Weekly Coastal Clean-up ⛱.\nJoin our volunteer and get FREE grocery basket.\nLimited to 100 slots only.'} 
+                        <Text label={'Weekly Coastal Clean-up.\nJoin our volunteer and get FREE grocery basket.\nLimited to 100 slots only.'} 
                             type={'medium'} style={styles.contextDescription}/>
                     </View>
                 </View>
@@ -158,15 +147,11 @@ const CardEvent = (props: any) => {
                     <Image source={Images.gradient_black} fadeDuration={1} style={styles.gradient}/>
                 </View>
 
-                <View style={styles.cardActions}>
+                <View style={styles.actions}>
 
-                    <View style={styles.cardAction}>
+                    <View style={styles.action}>
                         <Progress label={'65 slots left'} progress={'40%'} />
-
-                        <Pressable style={styles.cardActionButton}>
-                            <Text label={'Join'} type={'medium'} 
-                                style={styles.cardActionButtonLabel}/>
-                        </Pressable>
+                        <Action label={'Join'}/>
                     </View>
 
                 </View>

@@ -57,10 +57,18 @@ const Events = (props: any) => {
         )
     }
 
+    const onPressCreate = () => {
+        navigate('Event::Create');
+    }
+
     return (
         <SafeAreaView style={styles.safearea} edges={['top']}>
             <View style={styles.layout}>
-                <Header title={'Events'} tabs={tabs} />
+                <Header 
+                    title={'Events'} 
+                    tabs={tabs}
+                    onPressCreate={onPressCreate}
+                />
                 <FlatList
                     contentContainerStyle={styles.container}
                     scrollEnabled={true}
