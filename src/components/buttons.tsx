@@ -20,7 +20,10 @@ export const styles = StyleSheet.create({
         ...align.center,
         ...justify.center,
         height: 40,
-        paddingRight: 12
+        width: 40,
+        paddingRight: 5,
+        backgroundColor: '#12121250',
+        borderRadius: 50
     },
     like:{
         position: 'absolute',
@@ -57,7 +60,7 @@ export const BackButton = (props: any) => {
     const { onPress } = props;
     return (
         <Pressable style={styles.back} onPress={onPress}>
-            <BackIcon color={'#66666D'} width={24} height={24} />
+            <BackIcon color={'#FFF'} width={24} height={24} />
         </Pressable> 
     )
 }

@@ -11,7 +11,7 @@ import { styles } from './styles';
 import Text from '../../components/text';
 import Progress from '../../components/progress';
 import Tabs from '../../components/tabs';
-import { Action } from '../../components/buttons';
+import { Action, BackButton } from '../../components/buttons';
 
 // Constants
 import Images from '../../constants/images';
@@ -24,6 +24,10 @@ const EventDetails = (props: any) => {
         navigation.navigate(screen, params);
     }
 
+    const goBack = () => {
+        navigation.goBack();
+    }
+
     const tabs = [
         { id: '1', label: 'About' },
         { id: '2', label: 'Participant' },
@@ -33,6 +37,10 @@ const EventDetails = (props: any) => {
         <View style={styles.safearea}>
             <ScrollView style={styles.layout}>
                 <View style={styles.container}>
+
+                    <View style={styles.header}>
+                        <BackButton onPress={goBack} />
+                    </View>
 
                     <View style={styles.banner}>
                         <Image source={Images.post_1} style={styles.image} />
