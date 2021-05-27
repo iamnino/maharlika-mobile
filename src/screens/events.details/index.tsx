@@ -1,8 +1,6 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { Image, Pressable, TextInput, View } from 'react-native';
+import { Image, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import { GiftedChat, IMessage, MessageProps } from 'react-native-gifted-chat'
 
 // Screen Styles
 import { styles } from './styles';
@@ -20,6 +18,9 @@ const EventDetails = (props: any) => {
     const { navigation, route }: any = props;
     const { params } = route;
 
+    // States
+    const [activeTabIndex, setActiveTabIndex] = useState('about');
+
     const navigate = (screen: string, params: any = {}) => {
         navigation.navigate(screen, params);
     }
@@ -29,8 +30,8 @@ const EventDetails = (props: any) => {
     }
 
     const tabs = [
-        { id: '1', label: 'About' },
-        { id: '2', label: 'Participant' },
+        { id: '1', key: 'about', label: 'About' },
+        { id: '2', key: 'participant', label: 'Participant' },
     ]
 
     return (
@@ -74,7 +75,12 @@ const EventDetails = (props: any) => {
                     </View>
 
                     <View style={[styles.wrapper]}>
-                        <Tabs data={tabs} containerStyle={styles.tabs}/>
+                        <Tabs 
+                            data={tabs} 
+                            containerStyle={styles.tabs}
+                            activeIndex={activeTabIndex} 
+                            onPressTab={setActiveTabIndex}
+                        />
                         <View style={styles.tab}>
 
                             <View style={styles.context}>

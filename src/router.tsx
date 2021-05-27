@@ -24,15 +24,6 @@ import TabNavigation from './components/navigation/tab';
 import EventCreate from './screens/events.create';
 import EventDetails from './screens/events.details';
 
-import Post from './screens/post';
-import Filter from './screens/filter';
-import Search from './screens/search';
-import CreateForm from './screens/create.form';
-import CreatePreview from './screens/create.preview';
-import Chat from './screens/chat';
-import Category from './screens/category';
-import CategoryLists from './screens/category.lists';
-
 // Auth Screens
 import Birth from './screens/auth/auth.birth';
 import Code from './screens/auth/auth.code';
@@ -66,15 +57,6 @@ const Router = () => {
                                 <Screen name="Tab" component={TabNavigation} options={transitionSlide}/>
                                 <Screen name="Event::Create" component={EventCreate} options={transitionSlide}/>
                                 <Screen name="Event::Details" component={EventDetails} options={transitionSlide}/>
-
-                                <Screen name="Post" component={Post} options={transitionSlide}/>
-                                <Screen name="Filter" component={Filter} options={transitionSlide}/>
-                                <Screen name="Search" component={Search} options={transitionSlide}/>
-                                <Screen name="Create::Form" component={CreateForm} options={transitionSlide}/>
-                                <Screen name="Create::Preview" component={CreatePreview} options={transitionSlide}/>
-                                <Screen name="Chat" component={Chat} options={transitionSlide}/>
-                                <Screen name="Category" component={Category} options={transitionSlide}/>
-                                <Screen name="Category::Lists" component={CategoryLists} options={transitionSlide}/>
                             </Fragment>
                         }
                         { isLoggedIn &&

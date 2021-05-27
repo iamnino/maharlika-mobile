@@ -26,26 +26,35 @@ const styles = StyleSheet.create({
 
 const propTypes = {
     data: PropTypes.any,
-    containerStyle: PropTypes.any
+    containerStyle: PropTypes.any,
+    activeIndex: PropTypes.string,
+    onPressTab: PropTypes.func,
 };
 
 const defaultProps = {
     data: [],
-    containerStyle: {}
+    containerStyle: {},
+    activeIndex: '',
+    onPressTab: null,
 };
 
 const Tabs = (props: any) => {
-    const { data, containerStyle } = props;
+    const { data, containerStyle, activeIndex, onPressTab} = props;
 
     const renderItem = ({ item, index }: any) => {
-
         let style = {};
-
         if(data.length === index + 1){
             style = { marginRight: 0 };
         }
 
-        return <Tab label={item.label} style={style} />
+        return (
+            <Tab
+                labelStyle={{ opacity: activeIndex === item.key ? 1: 0.3 }}
+                label={item.label} 
+                style={style} 
+                onPress={() => onPressTab(item.key)}
+            />
+        )
     }
 
 	return (

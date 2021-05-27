@@ -32,21 +32,25 @@ const styles = StyleSheet.create({
 
 const propTypes = {
     label: PropTypes.string,
-    style: PropTypes.any
+    style: PropTypes.any,
+    labelStyle: PropTypes.any,
+    onPress: PropTypes.func
 };
 
 const defaultProps = {
     label: '',
-    style: {}
+    style: {},
+    labelStyle: {},
+    onPress: null
 };
 
 const Tab = (props: any) => {
-    const { label, style } = props;
+    const { label, style, labelStyle, onPress } = props;
 
 	return (
-        <Pressable style={[styles.button, style]}>
+        <Pressable style={[styles.button, style]} onPress={onPress}>
             <Text label={label} type={'medium'} 
-                style={{...styles.label}} />
+                style={{...styles.label, ...labelStyle}} />
         </Pressable>
 	)
 };

@@ -17,24 +17,20 @@ const Events = (props: any) => {
     const { navigation, route }: any = props;
     const { params } = route;
 
+    // States
+    const [activeTabIndex, setActiveTabIndex] = useState('all');
+    const [data, setData] = useState([]);
+
     const navigate = (screen: string, params: any = {}) => {
         navigation.navigate(screen, params);
     }
 
-    const data = [
-        {id: '1'},
-        {id: '2'},
-        {id: '3'},
-        {id: '4'},
-        {id: '5'},
-    ];
-
     const tabs = [
-        { id: '1', label: 'All' },
-        { id: '2', label: 'Recently Added' },
-        { id: '3', label: 'Upcoming' },
-        { id: '4', label: 'Completed' },
-        { id: '5', label: 'Redeem' },
+        { id: '1', key: 'all', label: 'All' },
+        { id: '2', key: 'recently-added', label: 'Recently Added' },
+        { id: '3', key: 'upcoming', label: 'Upcoming' },
+        { id: '4', key: 'completed', label: 'Completed' },
+        { id: '5', key: 'redeem', label: 'Redeem' },
     ]
 
     const renderItem = ({ item, index }: any) => {
@@ -45,7 +41,6 @@ const Events = (props: any) => {
         }
 
         const onPress = () => {
-            console.log(item);
             navigate('Event::Details', item);
         }
 
@@ -61,13 +56,24 @@ const Events = (props: any) => {
         navigate('Event::Create');
     }
 
+    useEffect(() => {
+        tabs.forEach(tab => {
+            const isActive:boolean = activeTabIndex === tab.key;
+            if(isActive){
+                // NOTE: Set API
+            }
+        });
+    }, [activeTabIndex]);
+
     return (
         <SafeAreaView style={styles.safearea} edges={['top']}>
             <View style={styles.layout}>
                 <Header 
                     title={'Events'} 
                     tabs={tabs}
+                    activeIndex={activeTabIndex}
                     onPressCreate={onPressCreate}
+                    onPressTab={setActiveTabIndex}
                 />
                 <FlatList
                     contentContainerStyle={styles.container}

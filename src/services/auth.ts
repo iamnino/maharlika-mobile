@@ -1,15 +1,15 @@
 import { header } from '../helpers/http.helper';
 
 const AuthServices = {
-    login: async (params: any) => {
-        return header.post('auth/login', params);
+    signin: async (params: any) => {
+        return header.post('auth/signin', params);
     },
-    logout: async (params: any) => {
-        return header.post('auth/logout', params);
+    signup: async (params: any) => {
+        return header.post('auth/signup', params);
     },
-    tokenize: async (params: any) => {
-        return header.post('auth/tokenize', params);
-    }
+    signout: async (params: any) => {
+        return header.post('auth/signout', params);
+    },
 }
 
 export default AuthServices;

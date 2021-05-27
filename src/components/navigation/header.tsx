@@ -65,17 +65,22 @@ const styles = StyleSheet.create({
 const propTypes = {
     title: PropTypes.string,
     tabs: PropTypes.array,
-    onPressCreate: PropTypes.func
+    activeIndex: PropTypes.string,
+    onPressTab: PropTypes.func,
+    onPressCreate: PropTypes.func,
 };
 
 const defaultProps = {
     title: '',
     tabs: [],
-    onPressCreate: null
+    activeIndex: '',
+    onPressTab: null,
+    onPressCreate: null,
 };
 
 const HeaderNavigation = (props: any) => {
-    const { title, tabs, onPressCreate } = props;
+    const { title, tabs, activeIndex, onPressCreate, onPressTab } = props;
+
 	return (
         <View style={styles.container}>
             <View style={styles.wrapper}>
@@ -90,7 +95,11 @@ const HeaderNavigation = (props: any) => {
                     }
                 </View>
                 { !isEmpty(tabs) &&
-                    <Tabs data={tabs} />
+                    <Tabs 
+                        data={tabs} 
+                        activeIndex={activeIndex} 
+                        onPressTab={onPressTab}
+                    />
                 }
             </View>
         </View>
