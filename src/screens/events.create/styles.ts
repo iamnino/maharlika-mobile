@@ -23,22 +23,4 @@ export const styles = StyleSheet.create({
     form: {
         width: '100%',
     },
-    field: {
-        ...flex.column,
-        width: '100%',
-        // height: 80,
-        marginBottom: 15,
-    },
-    input: {
-        ...shadow.card,
-        backgroundColor: '#FFFFFF',
-        minHeight: 52,
-        borderRadius: 10,
-        fontSize: 18,
-        paddingHorizontal: 15
-    },
-    label: {
-        fontSize: 18,
-        marginBottom: 8
-    }
 });

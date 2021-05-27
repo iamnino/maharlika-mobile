@@ -7,7 +7,6 @@ import { Datepicker } from '@ui-kitten/components';
 import isEmpty from 'lodash/isEmpty';
 import debounce from 'lodash/debounce';
 
-
 // Screen Styles
 import { styles } from './styles';
 

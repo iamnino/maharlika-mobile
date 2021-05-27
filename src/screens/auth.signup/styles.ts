@@ -17,5 +17,8 @@ export const styles = StyleSheet.create({
     },
     header: {
         paddingBottom: 0
+    },
+    form: {
+        width: '100%',
     }
 });

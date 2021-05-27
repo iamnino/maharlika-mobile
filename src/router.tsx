@@ -24,6 +24,11 @@ import TabNavigation from './components/navigation/tab';
 import EventCreate from './screens/events.create';
 import EventDetails from './screens/events.details';
 
+// Auth
+import AuthSignIn from './screens/auth.signin';
+import AuthSignUp from './screens/auth.signup';
+import AuthOnBoard from './screens/auth.onboard';
+
 const { Navigator, Screen } = createStackNavigator();
 
 const propTypes = {
@@ -42,12 +47,15 @@ const Router = () => {
             behavior={Platform.OS == 'ios' ? 'padding' : 'height'} enabled>
             <SafeAreaProvider>
                 <NavigationContainer ref={navigationRef}>
-                    <Navigator initialRouteName={isLoggedIn ? 'Tab' : 'Atuh'} headerMode={'none'}>
+                    <Navigator initialRouteName={isLoggedIn ? 'Tab' : 'Auth:OnBoard'} headerMode={'none'}>
                         { !isLoggedIn &&
                             <Fragment>
                                 <Screen name="Tab" component={TabNavigation} options={transitionSlide}/>
                                 <Screen name="Event::Create" component={EventCreate} options={transitionSlide}/>
                                 <Screen name="Event::Details" component={EventDetails} options={transitionSlide}/>
+                                <Screen name="Auth::SignIn" component={AuthSignIn} options={transitionSlide}/>
+                                <Screen name="Auth::SignUp" component={AuthSignUp} options={transitionSlide}/>
+                                <Screen name="Auth::OnBoard" component={AuthOnBoard} options={transitionSlide}/>
                             </Fragment>
                         }
                         { isLoggedIn &&

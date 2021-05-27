@@ -3,41 +3,23 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { FlatList, Pressable, TextInput, View } from 'react-native';
 
 // Screen Styles
-import styles from './styles';
+import { styles } from './styles';
 
 // Components
 import Text from '../../components/text';
 import Header from '../../components/navigation/header';
-import CardEvent from '../../components/card/event';
+import CardCommunity from '../../components/card/community';
 
-const Home = (props: any) => {
+const CommunityCreate = (props: any) => {
     const { navigation, route }: any = props;
     const { params } = route;
 
     // States
-    const [activeTabIndex, setActiveTabIndex] = useState('all');
-    const [data, setData] = useState([{id: '1'}]);
+    const [data, setData] = useState([{ id: '1' }, { id: '2' }, { id: '3' }]);
 
     const navigate = (screen: string, params: any = {}) => {
         navigation.navigate(screen, params);
     }
-
-    const tabs = [
-        { id: '1', key: 'all', label: 'All' },
-        { id: '2', key: 'covid-19-update', label: 'COVID-19 Update' },
-        { id: '3', key: 'clean-up-drive', label: 'Clean-up Drive' },
-        { id: '4', key: 'drive-3R', label: '3R Drive' },
-        { id: '5', key: 'community-pantry', label: 'Community Pantry' },
-    ]
-
-    useEffect(() => {
-        tabs.forEach(tab => {
-            const isActive:boolean = activeTabIndex === tab.key;
-            if(isActive){
-                // NOTE: Set API
-            }
-        });
-    }, [activeTabIndex]);
 
     const renderItem = ({ item, index }: any) => {
         let style: any = { marginBottom: 15 };
@@ -51,21 +33,24 @@ const Home = (props: any) => {
         }
 
         return (
-            <CardEvent 
+            <CardCommunity 
                 containerStyle={style}
                 onPress={onPress}
             />
         )
     }
 
+    const onPressCreate = () => {
+        console.log('Press Create');
+    }
+
     return (
         <SafeAreaView style={styles.safearea} edges={['top']}>
             <View style={styles.layout}>
                 <Header 
-                    title={'News Feed'} 
-                    tabs={tabs} 
-                    activeIndex={activeTabIndex}
-                    onPressTab={setActiveTabIndex}
+                    title={'Community Create'} 
+                    containerStyle={styles.header} 
+                    onPressCreate={onPressCreate}
                 />
                 <FlatList
                     contentContainerStyle={styles.container}
@@ -78,4 +63,4 @@ const Home = (props: any) => {
     )
 }
 
-export default Home;
+export default CommunityCreate;
