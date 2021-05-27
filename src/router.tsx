@@ -24,15 +24,6 @@ import TabNavigation from './components/navigation/tab';
 import EventCreate from './screens/events.create';
 import EventDetails from './screens/events.details';
 
-// Auth Screens
-import Birth from './screens/auth/auth.birth';
-import Code from './screens/auth/auth.code';
-import Gender from './screens/auth/auth.gender';
-import Intro from './screens/auth/auth.intro';
-import Mobile from './screens/auth/auth.mobile';
-import Photo from './screens/auth/auth.photo';
-import Username from './screens/auth/auth.username';
-
 const { Navigator, Screen } = createStackNavigator();
 
 const propTypes = {
@@ -51,7 +42,7 @@ const Router = () => {
             behavior={Platform.OS == 'ios' ? 'padding' : 'height'} enabled>
             <SafeAreaProvider>
                 <NavigationContainer ref={navigationRef}>
-                    <Navigator initialRouteName={isLoggedIn ? 'Tab' : 'Auth::Intro'} headerMode={'none'}>
+                    <Navigator initialRouteName={isLoggedIn ? 'Tab' : 'Atuh'} headerMode={'none'}>
                         { !isLoggedIn &&
                             <Fragment>
                                 <Screen name="Tab" component={TabNavigation} options={transitionSlide}/>
@@ -61,13 +52,6 @@ const Router = () => {
                         }
                         { isLoggedIn &&
                             <Fragment>
-                                <Screen name="Auth::Intro" component={Intro} options={transitionSlide}/>
-                                <Screen name="Auth::Mobile" component={Mobile} options={transitionSlide}/>
-                                <Screen name="Auth::Code" component={Code} options={transitionSlide}/>
-                                <Screen name="Auth::Username" component={Username} options={transitionSlide}/>
-                                <Screen name="Auth::Birth" component={Birth} options={transitionSlide}/>
-                                <Screen name="Auth::Gender" component={Gender} options={transitionSlide}/>
-                                <Screen name="Auth::Photo" component={Photo} options={transitionSlide}/>
                             </Fragment>
                         }
                     </Navigator>

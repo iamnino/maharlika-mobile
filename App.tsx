@@ -14,9 +14,6 @@ import { EvaIconsPack } from '@ui-kitten/eva-icons';
 // Themes
 import { default as theme } from './src/theme/theme.json';
 
-// Apollo Client
-import client from './src/graphql/client';
-
 // Redux
 import { store, persistor } from './src/store';
 
@@ -32,12 +29,10 @@ const App = () => {
                 <IconRegistry icons={EvaIconsPack} />
                 <ApplicationProvider {...eva} theme={{ ...eva.light, ...theme }}>
                     <Provider store={store}>
-                        <ApolloProvider client={client}>
-                            <PersistGate persistor={persistor}>
-                                <Router />
-                                <StatusBar style="dark" />
-                            </PersistGate>
-                        </ApolloProvider>
+                        <PersistGate persistor={persistor}>
+                            <Router />
+                            <StatusBar style="dark" />
+                        </PersistGate>
                     </Provider>
                 </ApplicationProvider>
             </Fragment>
