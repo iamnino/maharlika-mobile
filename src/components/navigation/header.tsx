@@ -68,6 +68,7 @@ const propTypes = {
     activeIndex: PropTypes.string,
     onPressTab: PropTypes.func,
     onPressCreate: PropTypes.func,
+    containerStyle: PropTypes.any
 };
 
 const defaultProps = {
@@ -76,13 +77,14 @@ const defaultProps = {
     activeIndex: '',
     onPressTab: null,
     onPressCreate: null,
+    containerStyle: {}
 };
 
 const HeaderNavigation = (props: any) => {
-    const { title, tabs, activeIndex, onPressCreate, onPressTab } = props;
+    const { title, tabs, activeIndex, onPressCreate, onPressTab, containerStyle } = props;
 
 	return (
-        <View style={styles.container}>
+        <View style={[styles.container, containerStyle]}>
             <View style={styles.wrapper}>
                 <View style={styles.context}>
                     <Text label={title} type={'bold'} style={styles.title} />

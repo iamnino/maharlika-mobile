@@ -12,9 +12,10 @@ export const styles = StyleSheet.create({
     },
     scroll: {},
     container: {
+        paddingBottom: 18,
+        paddingHorizontal: 16
     },
-    wrapper: {
-        ...flex.on,
-        ...justify.center
-    },
+    header: {
+        paddingBottom: 0
+    }
 });

@@ -19,7 +19,7 @@ const Events = (props: any) => {
 
     // States
     const [activeTabIndex, setActiveTabIndex] = useState('all');
-    const [data, setData] = useState([]);
+    const [data, setData] = useState([{ id: '1' }, { id: '2' }, { id: '3' }]);
 
     const navigate = (screen: string, params: any = {}) => {
         navigation.navigate(screen, params);
