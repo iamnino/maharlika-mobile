@@ -21,7 +21,6 @@ const Account = (props: any) => {
         <SafeAreaView style={styles.safearea} edges={['top']}>
             <View style={styles.layout}>
                 <Header title={'Account'} />
-
                 <View style={styles.container}>
                     <Pressable onPress={() => navigate('Auth::OnBoard')} style={{ marginBottom: 21 }}>
                         <Text label={'On Board'} style={{ fontSize: 18 }}/>
@@ -33,7 +32,6 @@ const Account = (props: any) => {
                         <Text label={'To Sign Up'} style={{ fontSize: 18 }}/>
                     </Pressable>
                 </View>
-
             </View>
         </SafeAreaView>
     )

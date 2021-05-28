@@ -5,7 +5,7 @@ const AuthServices = {
         return header.post('/auth/signin.php', params);
     },
     signup: async (params: any) => {
-        return header.post('/auth/signup.php', params);
+        return header.post('/default.php', params);
     },
     signout: async (params: any) => {
         return header.post('/auth/signout.php', params);

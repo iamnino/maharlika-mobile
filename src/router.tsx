@@ -47,19 +47,19 @@ const Router = () => {
             behavior={Platform.OS == 'ios' ? 'padding' : 'height'} enabled>
             <SafeAreaProvider>
                 <NavigationContainer ref={navigationRef}>
-                    <Navigator initialRouteName={isLoggedIn ? 'Tab' : 'Auth:OnBoard'} headerMode={'none'}>
-                        { !isLoggedIn &&
+                    <Navigator initialRouteName={isLoggedIn ? 'Tab' : 'Auth:SignIn'} headerMode={'none'}>
+                        { isLoggedIn &&
                             <Fragment>
                                 <Screen name="Tab" component={TabNavigation} options={transitionSlide}/>
                                 <Screen name="Event::Create" component={EventCreate} options={transitionSlide}/>
                                 <Screen name="Event::Details" component={EventDetails} options={transitionSlide}/>
+                            </Fragment>
+                        }
+                        { !isLoggedIn &&
+                            <Fragment>
                                 <Screen name="Auth::SignIn" component={AuthSignIn} options={transitionSlide}/>
                                 <Screen name="Auth::SignUp" component={AuthSignUp} options={transitionSlide}/>
                                 <Screen name="Auth::OnBoard" component={AuthOnBoard} options={transitionSlide}/>
-                            </Fragment>
-                        }
-                        { isLoggedIn &&
-                            <Fragment>
                             </Fragment>
                         }
                     </Navigator>

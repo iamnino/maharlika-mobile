@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { flex, justify, bg, font } from '../../styles/global.styles';
+import { flex, justify, bg, font, align } from '../../styles/global.styles';
 
 export const styles = StyleSheet.create({ 
     safearea: {
@@ -12,7 +12,11 @@ export const styles = StyleSheet.create({
     },
     scroll: {},
     container: {
-        paddingBottom: 18,
+        ... flex.row,
+        ...align.center,
+        height: '100%',
+    },
+    wrapper: {
         paddingHorizontal: 16
     },
     header: {
@@ -20,5 +24,17 @@ export const styles = StyleSheet.create({
     },
     form: {
         width: '100%',
+    },
+    action: {
+
+    },
+    link: {
+        ...align.center,
+        marginTop: 25,
+        // borderWidth: 1
+    },
+    label: {
+        fontSize: 16,
+        color: '#16a085'
     }
 });

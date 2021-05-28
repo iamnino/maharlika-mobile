@@ -66,7 +66,7 @@ const AuthSignUp = (props: any) => {
 
     // Form States
     const [name, setName] = useState('');
-    const [birthday, setBirthday] = useState('');
+    const [birthday, setBirthday] = useState(null);
 
     // Location
     const [addressRegion, setAddressRegion] = useState(new IndexPath(0));
@@ -90,23 +90,27 @@ const AuthSignUp = (props: any) => {
     }
 
     const onPressNext = async () => {
-        // try {
-        //     const res = await AuthServices.signup({
-                
-        //     });
-        //     console.log(res.data);
-        // } catch (error) {
-        //     console.log(error);
-        // }
-
         const params = {
             name,
+            birthday,
+            type,
+            addressRegion: region[addressRegion.row].id,
+            addressProvince: province[addressProvince.row].id,
+            addressCity: city[addressCity.row].id,
+            addressBarangay: barangay[addressBarangay.row].id,
             email,
             password,
             confirmPassword
         }
 
-        console.log(params);
+        // console.log(params);
+
+        try {
+            const res = await AuthServices.signup(params);
+            const { data, results } = res.data;
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     // Component will mount
