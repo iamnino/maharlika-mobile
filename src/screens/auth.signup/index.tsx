@@ -24,6 +24,10 @@ import ButtonAction from '../../components/button/action';
 // Services
 import LocationServices from '../../services/location';
 import AuthServices from '../../services/auth';
+import ImageServices from '../../services/image';
+
+// Utils
+import { generateID } from '../../helpers/utils.helper';
 
 const AuthSignUp = (props: any) => {
     const { navigation, route }: any = props;
@@ -74,7 +78,8 @@ const AuthSignUp = (props: any) => {
     const [addressCity, setAddressCity] = useState(new IndexPath(0));
     const [addressBarangay, setAddressBarangay] = useState(new IndexPath(0));
 
-    const [photo, setPhoto] = useState('');
+    const [photo, setPhoto] = useState<any>(null);
+    const [imageURI, setImageURI] = useState(null);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
@@ -87,6 +92,14 @@ const AuthSignUp = (props: any) => {
 
     const navigate = (screen: string, params: any = {}) => {
         navigation.navigate(screen, params);
+    }
+
+    const form = new FormData();
+
+    const onImagePick = async () => {
+        const photo: any = await ImageServices.getLocalImage();
+        setImageURI(photo.uri);
+        setPhoto(photo);
     }
 
     const onPressNext = async () => {
@@ -103,14 +116,28 @@ const AuthSignUp = (props: any) => {
             confirmPassword
         }
 
-        // console.log(params);
+        const source = { 
+            ...params,
+            photo: {
+                uri: photo.uri, 
+                type: photo.type,
+                name: generateID(),
+            }
+        };
+        form.append("form", JSON.parse(JSON.stringify(source)));
 
-        try {
-            const res = await AuthServices.signup(params);
-            const { data, results } = res.data;
-        } catch (error) {
-            console.log(error);
-        }
+        // form.append("form", JSON.parse(JSON.stringify(params)));
+
+        console.log(form);
+
+        // const source = {filename: response.fileName, type: response.type, uri: response.fileSize};
+
+        // try {
+        //     const res = await AuthServices.signup(params);
+        //     const { data, results } = res.data;
+        // } catch (error) {
+        //     console.log(error);
+        // }
     }
 
     // Component will mount
@@ -236,9 +263,10 @@ const AuthSignUp = (props: any) => {
                         />
 
                         <FieldUpload 
-                            value={password}
+                            uri={imageURI}
                             placeholder={''}
                             label={_upload}
+                            onSelect={onImagePick}
                             sub={_upload_sub}
                             enabled={true}
                         />

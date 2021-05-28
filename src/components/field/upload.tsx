@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextInput, View } from 'react-native';
+import { Image, Pressable, View } from 'react-native';
 import { StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 import { Datepicker } from '@ui-kitten/components';
@@ -28,7 +28,9 @@ export const styles = StyleSheet.create({
         ...shadow.card,
         borderRadius: 10,
         backgroundColor: '#FFFFFF',
-        height: 100
+        height: 165,
+        overflow: 'hidden',
+        position: 'relative'
     },
     label: {
         fontSize: 18,
@@ -44,8 +46,17 @@ export const styles = StyleSheet.create({
         fontSize: 18,
         color: '#00000040',
     },
-    separator: {
-        width: '5%'
+    image: {
+        position: 'absolute',
+        height: '100%',
+        width: '100%'
+    },
+    link: {
+        // borderWidth: 1,
+        paddingHorizontal: 15,
+        paddingVertical: 8,
+        backgroundColor: '#FFFFFF50',
+        borderRadius: 50
     }
 });
 
@@ -53,7 +64,7 @@ const propTypes = {
     label: PropTypes.string,
     sub: PropTypes.string,
     placeholder: PropTypes.string,
-    value: PropTypes.any,
+    uri: PropTypes.any,
     onSelect: PropTypes.func,
     multiline: PropTypes.bool,
     numberOfLines: PropTypes.number,
@@ -65,7 +76,7 @@ const defaultProps = {
     label: '',
     sub: '',
     placeholder: '',
-    value: '',
+    uri: null,
     onSelect: null,
     dateStyle: {},
     enabled: false
@@ -76,7 +87,7 @@ const FieldUpload = (props: any) => {
         label, 
         sub, 
         placeholder, 
-        value, 
+        uri, 
         onSelect, 
         dateStyle,
         enabled
@@ -88,13 +99,12 @@ const FieldUpload = (props: any) => {
             <Text label={sub} style={styles.sub} type={'semiBold'} />
 
             <View style={styles.row}>
-                <View style={styles.placeholder}>
-                    <Text label={'Front'} style={styles.small} type={'medium'} />
-                </View>
-                <View style={styles.separator} />
-                <View style={styles.placeholder}>
-                    <Text label={'Back'} style={styles.small} type={'medium'} />
-                </View>
+                <Pressable style={styles.placeholder} onPress={onSelect}>
+                    <Image source={{ uri: uri }} style={styles.image} />
+                    {   !uri && 
+                        <Text label={'Choose Image'} style={styles.small} type={'medium'} />
+                    }
+                </Pressable>
             </View>
         </View>
     )
