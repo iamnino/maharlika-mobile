@@ -20,5 +20,15 @@ export const styles = StyleSheet.create({
     },
     form: {
         width: '100%',
+    },
+    divider: {
+        width: '100%',
+        borderTopWidth: 1,
+        borderColor: '#00000015',
+        marginTop: 10,
+        paddingBottom: 20
+    },
+    action: {
+        
     }
 });

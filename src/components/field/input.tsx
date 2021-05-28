@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
         ...flex.column,
         width: '100%',
         // height: 80,
-        marginBottom: 15,
+        marginBottom: 18,
     },
     row: {
         ...shadow.card,
@@ -31,7 +31,7 @@ export const styles = StyleSheet.create({
     },
     label: {
         fontSize: 18,
-        marginBottom: 8
+        marginBottom: 12
     }
 });
 
@@ -44,6 +44,7 @@ const propTypes = {
     numberOfLines: PropTypes.number,
     inputStyle: PropTypes.any,
     enabled: PropTypes.bool,
+    secure: PropTypes.bool
 };
 
 const defaultProps = {
@@ -54,7 +55,8 @@ const defaultProps = {
     multiline: false,
     numberOfLines: 1,
     inputStyle: {},
-    enabled: false
+    enabled: false,
+    secure: false
 };
 
 const FieldInput = (props: any) => {
@@ -66,7 +68,8 @@ const FieldInput = (props: any) => {
         multiline, 
         numberOfLines,
         inputStyle,
-        enabled
+        enabled,
+        secure
     } = props;
 
     return (
@@ -81,6 +84,7 @@ const FieldInput = (props: any) => {
                     onChangeText={onInputChange}
                     numberOfLines={numberOfLines}
                     editable={enabled}
+                    secureTextEntry={secure}
                 />
             </View>
         </View>

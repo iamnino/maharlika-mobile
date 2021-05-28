@@ -27,18 +27,18 @@ const AuthSignUp = (props: any) => {
     }
 
     const actions = [
-        { id: generateID(), key: 'individual', label: 'An Individual' },
-        { id: generateID(), key: 'ngo', label: 'Non-Government Organizations (NGO)' },
-        { id: generateID(), key: 'corporate', label: 'Business/Corporate' },
+        { id: generateID(), type: 'individual', label: 'An Individual' },
+        { id: generateID(), type: 'ngo', label: 'Non-Government Organizations (NGO)' },
+        { id: generateID(), type: 'corporate', label: 'Business/Corporate' },
     ]
 
     const renderActions = ({ item }: any) => {
-        const { key, label } = item;
-        const isActive: boolean = selectedIndex == key;
+        const { type, label } = item;
+        const isActive: boolean = selectedIndex == type;
         return (
             <Pressable
                 style={[styles.button, isActive ? styles.active: {} ]}
-                onPress={() => setIndex(key)}>
+                onPress={() => setIndex(type)}>
                 <Text 
                     label={label} 
                     style={{...styles.label, ...{ color: isActive ? '#FFFFFF': '#00000080'}}}
@@ -49,7 +49,7 @@ const AuthSignUp = (props: any) => {
     }
 
     const onPressNext = () => {
-        const data = find(actions, { key: selectedIndex });
+        const data = find(actions, { type: selectedIndex });
         if(!isNull(selectedIndex)) {
             navigate('Auth::SignUp', data);
         }

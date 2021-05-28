@@ -2,20 +2,17 @@ import { header } from '../helpers/http.helper';
 
 const LocationServices = {
     region: async () => {
-        return header.post('/region.php');
+        return header.get('/region.php');
     },
     province: async (params: any) => {
-        return header.post('/province.php', params);
+        return header.get(`/province.php?regCode=${params.regCode}`);
     },
     city: async (params: any) => {
-        return header.post('/city.php', params);
+        return header.get(`/city.php?provCode=${params.provCode}`);
     },
     barangay: async (params: any) => {
-        return header.post('/barangay.php', params);
+        return header.get(`/barangay.php?cityCode=${params.citymunCode}`);
     },
 }
-
-// https://syrichta.com/maharlika/api/province.php?regCode=01
-// https://syrichta.com/maharlika/api/city.php?provCode=0128
 
 export default LocationServices;
