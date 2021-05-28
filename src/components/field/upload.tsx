@@ -40,24 +40,29 @@ export const styles = StyleSheet.create({
         fontSize: 14,
         color: '#00000065',
         marginBottom: 12,
-
-    },
-    small: {
-        fontSize: 18,
-        color: '#00000040',
     },
     image: {
         position: 'absolute',
         height: '100%',
-        width: '100%'
+        width: '100%',
+        // borderWidth: 1,
+        // borderColor: 'red',
+        // backgroundColor: 'red'
     },
     link: {
-        // borderWidth: 1,
+      
+    },
+    picker: {
+        zIndex: 1,
         paddingHorizontal: 15,
         paddingVertical: 8,
-        backgroundColor: '#FFFFFF50',
+        backgroundColor: '#00000010',
         borderRadius: 50
-    }
+    },
+    small: {
+        fontSize: 16,
+        color: '#00000085',
+    },
 });
 
 const propTypes = {
@@ -100,10 +105,12 @@ const FieldUpload = (props: any) => {
 
             <View style={styles.row}>
                 <Pressable style={styles.placeholder} onPress={onSelect}>
-                    <Image source={{ uri: uri }} style={styles.image} />
-                    {   !uri && 
-                        <Text label={'Choose Image'} style={styles.small} type={'medium'} />
+                    {  !uri && 
+                        <View style={styles.picker}>
+                            <Text label={'Choose Image'} style={styles.small} type={'medium'} />
+                        </View>
                     }
+                    <Image source={{ uri: uri }} style={styles.image} />
                 </Pressable>
             </View>
         </View>

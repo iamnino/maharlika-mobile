@@ -94,12 +94,38 @@ const AuthSignUp = (props: any) => {
         navigation.navigate(screen, params);
     }
 
-    const form = new FormData();
-
     const onImagePick = async () => {
         const photo: any = await ImageServices.getLocalImage();
         setImageURI(photo.uri);
-        setPhoto(photo);
+        console.log('Photo pick!');
+
+        // setPhoto(photo);
+    }
+
+    const uploadImage = async (token: any) => {
+        console.log('Upload Image');
+
+        const source = { 
+            token: token,
+            uri: photo.uri, 
+            type: photo.type,
+            name: generateID()
+        };
+
+
+        const form = new FormData();
+        form.append("form", JSON.parse(JSON.stringify(source)));
+
+        try {
+            const res = await ImageServices.upload(form);
+            const { data, results } = res.data;
+            if(results) {
+                console.log('Upload Image Done')
+            }
+        } catch (error) {
+            
+        }
+
     }
 
     const onPressNext = async () => {
@@ -116,28 +142,16 @@ const AuthSignUp = (props: any) => {
             confirmPassword
         }
 
-        const source = { 
-            ...params,
-            photo: {
-                uri: photo.uri, 
-                type: photo.type,
-                name: generateID(),
+        try {
+            const res = await AuthServices.signup(params);
+            const { data, results } = res.data;
+            if(results) {
+                uploadImage(data.token);
             }
-        };
-        form.append("form", JSON.parse(JSON.stringify(source)));
 
-        // form.append("form", JSON.parse(JSON.stringify(params)));
-
-        console.log(form);
-
-        // const source = {filename: response.fileName, type: response.type, uri: response.fileSize};
-
-        // try {
-        //     const res = await AuthServices.signup(params);
-        //     const { data, results } = res.data;
-        // } catch (error) {
-        //     console.log(error);
-        // }
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     // Component will mount

@@ -1,4 +1,5 @@
 import * as ImagePicker from 'expo-image-picker';
+import axios from 'axios';
 
 const ImageServices = {
     getLocalImage : async () => {
@@ -11,5 +12,15 @@ const ImageServices = {
             exif: false
         });
     },
+    upload: async (params: any) => {
+        return axios({
+            method: 'POST',
+            url: `${process.env.API_URL}/upload.php`,
+            headers: {
+                'Content-Type' :'multipart/form-data'
+            },
+            data: params
+        });
+    }
 }
 export default ImageServices;
