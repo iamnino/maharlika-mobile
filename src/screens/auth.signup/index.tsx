@@ -100,14 +100,13 @@ const AuthSignUp = (props: any) => {
         setPhoto(photo);
     }
 
-    const uploadImage = async (token: any) => {
+    const uploadImage = async (id: any) => {
         setLoading(true);
 
         const source = { 
-            token: token,
             uri: photo.uri, 
             type: photo.type,
-            name: token
+            name: id
         };
 
         const form = new FormData();
@@ -115,13 +114,8 @@ const AuthSignUp = (props: any) => {
 
         try {
             const res = await ImageServices.upload(form);
-            console.log('RESULT', res.data)
-            console.log('FROM FORM' , form)
             setLoading(false);
-            // const { data, results } = res.data;
-            // if(results) {
-            //     console.log('Upload Image Done')
-            // }
+            navigate('Auth::SignIn', { new: true });
         } catch (error) {
             setLoading(false);
         }
@@ -149,10 +143,7 @@ const AuthSignUp = (props: any) => {
             const { data, results } = res.data;
             
             if(results) {
-                // console.log(data);
-                uploadImage(data.token);
-            } else {
-
+                uploadImage(data.id);
             }
         } catch (error) {
             setLoading(false);

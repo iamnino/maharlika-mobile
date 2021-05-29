@@ -12,7 +12,6 @@ export const styles = StyleSheet.create({
     },
     scroll: {},
     container: {
-        paddingVertical: 25,
         paddingHorizontal: 16
     },
     wrapper: {

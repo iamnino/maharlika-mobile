@@ -14,21 +14,26 @@ import UserServices from '../services/user';
 export const doLogin = (params: any) => async (dispatch: any) => {
     try {
         dispatch({ type: LOGIN });
-        // const { data }: any = await AuthServices.login(params);
-        // if(data && data.result){
+        const res = await AuthServices.signin(params);
+        const { data, results } = res.data;
+
+        console.log(data, results);
+
+        if(results){
             dispatch({ 
                 type: LOGIN_SUCCESS, 
-                // payload: data.data
+                payload: data
             });
-        // } else {
-        //     dispatch({ 
-        //         type: LOGIN_ERROR, 
-        //         payload: { 
-        //             title: "Sign In",
-        //             message: data.message
-        //         }
-        //     });
-        // }
+        } else {
+            dispatch({ 
+                type: LOGIN_ERROR, 
+                payload: { 
+                    title: "Sign In",
+                    message: data
+                }
+            });
+        }
+
     } catch (error) {
         dispatch({ 
             type: LOGIN_ERROR, 

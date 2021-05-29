@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Pressable, View } from 'react-native';
+import { connect, useSelector } from 'react-redux';
 
 // Screen Styles
 import { styles } from './styles';
@@ -14,9 +15,14 @@ import ButtonAction from '../../components/button/action';
 // Services
 import AuthServices from '../../services/auth';
 
+// Actions
+import { doLogin } from '../../actions/auth';
+
 const AuthSignIn = (props: any) => {
     const { navigation, route }: any = props;
     const { params } = route;
+
+    console.log(params);
 
     // States
     const [email, setEmail] = useState('');
@@ -25,32 +31,28 @@ const AuthSignIn = (props: any) => {
     // Local States
     const [loading, setLoading] = useState(false);
 
+    // Selector States
+    const isLoading = useSelector((state:any) => state.auth.isLoading);
+
     const navigate = (screen: string, params: any = {}) => {
         navigation.navigate(screen, params);
     }
 
     const onPressSignIn = async () => {
-        setLoading(true);
-
-        const params = {
-            email,
-            password
-        }
-
-        try {
-            const res = await AuthServices.signin(params);
-            const { data, results } = res.data;
-            
-            setLoading(false);
-        } catch (error) {
-            setLoading(false);
-        }
-
+        const { onLogin } = props;
+        onLogin({
+            email: email,
+            password: password
+        });
     }
     
     const onPressCreateAccount = () => {
         navigate('Auth::OnBoard')
     }
+
+    useEffect(() => {
+        console.log('Change in Props', isLoading)
+    }, [isLoading]);
 
     return (
         <SafeAreaView style={styles.safearea} edges={['top']}>
@@ -79,7 +81,7 @@ const AuthSignIn = (props: any) => {
 
                             <View style={styles.action}>
                                 <ButtonAction 
-                                    loading={loading}
+                                    loading={isLoading}
                                     label={'Sign In'}
                                     containerStyle={{ backgroundColor: '#16a085' }}
                                     onPress={loading ? null : onPressSignIn}
@@ -97,4 +99,18 @@ const AuthSignIn = (props: any) => {
     )
 }
 
-export default AuthSignIn;
+const bindAction = (dispatch: any) => {
+    return {
+        onLogin: (params: any) => { 
+            dispatch(doLogin(params)) 
+        },
+    }
+}
+
+const mapStateToProps = (state: any) => {
+    return {
+        error: state.auth.error
+    };
+}
+
+export default connect(mapStateToProps, bindAction)(AuthSignIn);
