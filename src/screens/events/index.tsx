@@ -53,7 +53,7 @@ const Events = (props: any) => {
     }
 
     const onPressCreate = () => {
-        navigate('Event::Create');
+        navigate('Event::OnBoard');
     }
 
     useEffect(() => {

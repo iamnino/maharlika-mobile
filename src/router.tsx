@@ -21,6 +21,7 @@ import {
 import TabNavigation from './components/navigation/tab';
 
 // Screens
+import EventOnBoard from './screens/event.onboard';
 import EventCreate from './screens/events.create';
 import EventDetails from './screens/events.details';
 
@@ -51,6 +52,7 @@ const Router = () => {
                         { isLoggedIn &&
                             <Fragment>
                                 <Screen name="Tab" component={TabNavigation} options={transitionSlide}/>
+                                <Screen name="Event::OnBoard" component={EventOnBoard} options={transitionSlide}/>
                                 <Screen name="Event::Create" component={EventCreate} options={transitionSlide}/>
                                 <Screen name="Event::Details" component={EventDetails} options={transitionSlide}/>
                             </Fragment>

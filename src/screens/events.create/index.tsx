@@ -18,6 +18,11 @@ import ButtonAction from '../../components/button/action';
 // Forms
 import FieldInput from '../../components/field/input';
 import FieldDate from '../../components/field/date';
+import FieldUpload from '../../components/field/upload';
+import FieldDropdown from '../../components/field/dropdown';
+
+// Services
+import ImageServices from '../../services/image';
 
 const EventCreate = (props: any) => {
     const { navigation, route }: any = props;
@@ -27,12 +32,22 @@ const EventCreate = (props: any) => {
         navigation.navigate(screen, params);
     }
 
-    // States
+    // Form States
     const [name, setName] = useState<string>('');
     const [time, setTime] = useState(null);
     const [date, setDate] = useState(null);
     const [location, setLocation] = useState<string>('');
     const [description, setDescription] = useState<string>('');
+
+    // Local States
+    const [photo, setPhoto] = useState<any>(null);
+    const [imageURI, setImageURI] = useState(null);
+
+    const onImagePick = async () => {
+        const photo: any = await ImageServices.getLocalImage();
+        setImageURI(photo.uri);
+        setPhoto(photo);
+    }
 
     return (
         <SafeAreaView style={styles.safearea}>
@@ -77,6 +92,15 @@ const EventCreate = (props: any) => {
                             multiline={true}
                             numberOfLines={5}
                             inputStyle={{ minHeight: 100 }}
+                            enabled={true}
+                        />
+
+                        <FieldUpload 
+                            uri={imageURI}
+                            placeholder={''}
+                            onSelect={onImagePick}
+                            label={'Upload Event Banner'}
+                            // sub={_upload_sub}
                             enabled={true}
                         />
 
