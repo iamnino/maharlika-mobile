@@ -23,6 +23,16 @@ export const styles = StyleSheet.create({
         height: 100, 
         width: '100%', 
         backgroundColor: '#FFF',
-        borderRadius: 8
+        borderRadius: 8,
+        marginBottom: 25,
+        paddingHorizontal: 18,
+        paddingVertical: 15        
+    },
+    h1: {
+        fontSize: 24
+    },
+    h2: {
+        fontSize: 16
     }
+    
 });

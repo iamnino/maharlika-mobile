@@ -28,4 +28,30 @@ export const styles = StyleSheet.create({
         paddingBottom: 18,
         paddingHorizontal: 16
     },
+    pointsContainer: {
+        ...shadow.card,
+        borderTopColor: '#00000010',
+        borderTopWidth: 1,
+        position: 'absolute',
+        bottom: 0,
+        height: 45,
+        backgroundColor: '#FFF',
+        width: '100%'
+    },
+    pointsWrapper: {
+        ...flex.row,
+        ...align.center,
+        ...justify.spaceBetween,
+        height: '100%',
+        paddingHorizontal: 16
+    },
+    pointsLabel: {
+        color: '#00000065',
+        fontSize: 15
+    },
+    points: {
+        color: '#000000',
+        fontSize: 21
+    },
+
 });

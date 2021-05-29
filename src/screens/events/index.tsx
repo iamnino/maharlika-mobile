@@ -9,9 +9,13 @@ import { styles } from './styles';
 import Text from '../../components/text';
 import Header from '../../components/navigation/header';
 import CardEvent from '../../components/card/event';
+import CardRedeem from '../../components/card/redeem';
 
 // Constants
 import Images from '../../constants/images';
+
+// Utils
+import { generateID } from '../../helpers/utils.helper';
 
 const Events = (props: any) => {
     const { navigation, route }: any = props;
@@ -19,7 +23,27 @@ const Events = (props: any) => {
 
     // States
     const [activeTabIndex, setActiveTabIndex] = useState('all');
-    const [data, setData] = useState([{ id: '1' }, { id: '2' }, { id: '3' }]);
+
+    const [data, setData] = useState([
+        { id: '1' }, 
+        { id: '2' }, 
+        { id: '3' }]
+    );
+
+    const [redeem, setRedeems] = useState([
+        { id: generateID(), image: Images.redeem_bangles, title: '', description: '', pearl: '100 pearls'}, 
+        { id: generateID(), image: Images.redeem_earing, title: '', description: '', pearl: '125 pearls'}, 
+        { id: generateID(), image: Images.redeem_lace, title: '', description: '', pearl: '125 pearls'},
+        { id: generateID(), image: Images.redeem_pen, title: '', description: '', pearl: '135 pearls'},
+        { id: generateID(), image: Images.redeem_pot, title: '', description: '', pearl: '145 pearls'}, 
+        { id: generateID(), image: Images.redeem_smile, title: '', description: '', pearl: '150 pearls'}, 
+        { id: generateID(), image: Images.redeem_tote, title: '', description: '', pearl: '165 pearls'},
+        { id: generateID(), image: Images.redeem_turtle, title: '', description: '', pearl: '165 pearls'},
+        { id: generateID(), image: Images.redeem_bangles, title: '', description: '', pearl: '200 pearls'}, 
+        { id: generateID(), image: Images.redeem_earing, title: '', description: '', pearl: '240 pearls'}, 
+        { id: generateID(), image: Images.redeem_lace, title: '', description: '', pearl: '250 pearls'},
+        { id: generateID(), image: Images.redeem_smile, title: '', description: '', pearl: '300 pearls'},
+    ]);
 
     const navigate = (screen: string, params: any = {}) => {
         navigation.navigate(screen, params);
@@ -32,6 +56,10 @@ const Events = (props: any) => {
         { id: '4', key: 'completed', label: 'Completed' },
         { id: '5', key: 'redeem', label: 'Redeem' },
     ]
+
+    const isRedeemActive = () => {
+        return activeTabIndex === 'redeem';
+    }
 
     const renderItem = ({ item, index }: any) => {
         let style: any = { marginBottom: 15 };
@@ -52,17 +80,40 @@ const Events = (props: any) => {
         )
     }
 
+    const renderRedeem = ({ item, index }: any) => {
+        let style: any = { marginBottom: 15 };
+
+        if(data.length === index + 1) {
+            style = {} 
+        }
+
+        return (
+            <CardRedeem 
+                data={item}
+                containerStyle={style}
+                onPress={null}
+            />
+        )
+    }
+
     const onPressCreate = () => {
         navigate('Event::OnBoard');
     }
 
+    const getRedeemLists = async () => {
+        console.log('Load Redeemables');
+    }
+
+    const getEventsByFilter = async (key: string) => {
+        console.log('Load Lists', key);
+    }
+
     useEffect(() => {
-        tabs.forEach(tab => {
-            const isActive:boolean = activeTabIndex === tab.key;
-            if(isActive){
-                // NOTE: Set API
-            }
-        });
+        if(isRedeemActive()){
+            getRedeemLists();
+        } else {
+            getEventsByFilter(activeTabIndex);
+        }
     }, [activeTabIndex]);
 
     return (
@@ -75,13 +126,41 @@ const Events = (props: any) => {
                     onPressCreate={onPressCreate}
                     onPressTab={setActiveTabIndex}
                 />
-                <FlatList
-                    contentContainerStyle={styles.container}
-                    scrollEnabled={true}
-                    data={data}
-                    renderItem={renderItem}
-                />
+
+                { !isRedeemActive() &&
+                    <FlatList
+                        contentContainerStyle={styles.container}
+                        scrollEnabled={true}
+                        data={data}
+                        renderItem={renderItem}
+                    />
+                }
+
+                { isRedeemActive() &&
+                    <FlatList
+                        numColumns={2}
+                        columnWrapperStyle={{ 
+                            width: '100%',  
+                            justifyContent: "space-around" 
+                        }}
+                        contentContainerStyle={[styles.container, { 
+                            paddingHorizontal: 8, 
+                            paddingBottom: isRedeemActive() ? 45: 18
+                        }]}
+                        scrollEnabled={true}
+                        data={redeem}
+                        renderItem={renderRedeem}
+                    />
+                }
             </View>
+            { isRedeemActive() &&
+                <View style={styles.pointsContainer}>
+                    <View style={styles.pointsWrapper}>
+                        <Text label={'Redeemable Pearls'} style={styles.pointsLabel} type={'medium'} />
+                        <Text label={'1000'} style={styles.points} type={'bold'} />
+                    </View>
+                </View>
+            }
         </SafeAreaView>
     )
 }

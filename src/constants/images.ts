@@ -30,6 +30,15 @@ const profile_5 = require('../../assets/images/profiles/profile-5.png');
 const profile_6 = require('../../assets/images/profiles/profile-6.png');
 const profile_7 = require('../../assets/images/profiles/profile-7.png');
 
+const redeem_bangles = require('../../assets/images/redeem/redeem-bangles.png');
+const redeem_earing = require('../../assets/images/redeem/redeem-earing.png');
+const redeem_lace = require('../../assets/images/redeem/redeem-lace.png');
+const redeem_pen = require('../../assets/images/redeem/redeem-pen.png');
+const redeem_pot = require('../../assets/images/redeem/redeem-pot.png');
+const redeem_smile = require('../../assets/images/redeem/redeem-smile.png');
+const redeem_tote = require('../../assets/images/redeem/redeem-tote.png');
+const redeem_turtle = require('../../assets/images/redeem/redeem-turtle.png');
+
 export default {
     banner_1,
     banner_health_and_beauty,
@@ -52,5 +61,13 @@ export default {
     profile_4,
     profile_5,
     profile_6,
-    profile_7
+    profile_7,
+    redeem_bangles,
+    redeem_earing,
+    redeem_lace,
+    redeem_pen,
+    redeem_pot,
+    redeem_smile,
+    redeem_tote,
+    redeem_turtle
 }

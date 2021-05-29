@@ -18,6 +18,9 @@ const Account = (props: any) => {
     const { navigation, route }: any = props;
     const { params } = route;
 
+    // Selector States
+    const user = useSelector((state:any) => state.auth.user);
+
     const navigate = (screen: string, params: any = {}) => {
         navigation.navigate(screen, params);
     }
@@ -27,11 +30,33 @@ const Account = (props: any) => {
         doLogout();
     }
 
+    const typeHandler = (key: string) => {
+        let type: string = '';
+        switch (key) {
+            case 'individual':
+                type = 'Individual';
+                break;
+            case 'ngo':
+                type = 'Non-Government ';
+                break;
+            case 'corporate':
+                type = 'Business/Corporate';
+                break;
+            default:
+                break;
+        }
+    }
+
     return (
         <SafeAreaView style={styles.safearea} edges={['top']}>
             <View style={styles.layout}>
                 <Header title={'Account'} />
                 <View style={styles.container}>
+
+                    <View style={styles.card}>
+                        <Text label={`Hello, ${user.name}`}  type={'semiBold'} style={styles.h1} />
+                        {/* <Text label={``}  type={'semiBold'} style={styles.h2} /> */}
+                    </View>
 
                     <ButtonAction 
                         // loading={loading}

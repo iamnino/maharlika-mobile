@@ -72,7 +72,8 @@ const EventOnBoard = (props: any) => {
                             numColumns={2}
                             columnWrapperStyle={{ 
                                 width: '100%',  
-                                justifyContent: "space-around" }} 
+                                justifyContent: "space-around" 
+                            }} 
                             contentContainerStyle={styles.form}
                             scrollEnabled={false}
                             data={actions}
