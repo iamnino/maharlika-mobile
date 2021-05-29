@@ -8,6 +8,7 @@ const IS_MONOBROW = isIPhoneWithMonobrow();
 
 // Components
 import Text from '../text';
+import Loading from '../loading';
 
 // Global Styles
 import { align, flex, shadow, justify } from '../../styles/global.styles';
@@ -34,27 +35,34 @@ const propTypes = {
     label: PropTypes.string,
     containerStyle: PropTypes.any,
     labelStyle: PropTypes.any,
-    onPress: PropTypes.func
+    onPress: PropTypes.func,
+    loading: PropTypes.bool
 };
 
 const defaultProps = {
     label: {},
     containerStyle: {},
     labelStyle: {},
-    onPress: null
+    onPress: null,
+    loading: false
 };
 
 const ButtonAction = (props: any) => {
-    const { label, containerStyle, labelStyle, onPress }: any = props;
+    const { label, containerStyle, labelStyle, onPress, loading }: any = props;
     return (
         <Pressable 
             style={[styles.button, containerStyle]}
             onPress={onPress}>
-            <Text 
-                label={label} 
-                style={{...styles.label, ...labelStyle}}
-                type={'semiBold'}
-            />
+            <Loading isVisible={loading} isInline={true} />
+
+            { !loading &&
+                <Text 
+                    label={label} 
+                    style={{...styles.label, ...labelStyle}}
+                    type={'semiBold'}
+                />
+            }
+
         </Pressable>
     )
 }

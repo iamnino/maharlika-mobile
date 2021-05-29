@@ -1,4 +1,8 @@
 import { StyleSheet } from 'react-native';
+import { isIPhoneWithMonobrow } from 'react-native-status-bar-height';
+
+const IS_MONOBROW = isIPhoneWithMonobrow();
+
 import { flex, justify, bg, font, align } from '../../styles/global.styles';
 
 export const styles = StyleSheet.create({ 
@@ -34,7 +38,7 @@ export const styles = StyleSheet.create({
         // borderWidth: 1
     },
     label: {
-        fontSize: 16,
+        fontSize: IS_MONOBROW ? 16: 21,
         color: '#16a085'
     }
 });

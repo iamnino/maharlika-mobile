@@ -21,6 +21,7 @@ const AuthSignUp = (props: any) => {
 
     // States
     const [selectedIndex, setIndex] = useState(null);
+    const [loading, setLoading] = useState(false);
    
     const navigate = (screen: string, params: any = {}) => {
         navigation.navigate(screen, params);
@@ -49,8 +50,10 @@ const AuthSignUp = (props: any) => {
     }
 
     const onPressNext = () => {
+        setLoading(true);
         const data = find(actions, { type: selectedIndex });
         if(!isNull(selectedIndex)) {
+            setLoading(false);
             navigate('Auth::SignUp', data);
         }
     }
@@ -78,9 +81,10 @@ const AuthSignUp = (props: any) => {
 
                 <View style={styles.action}>
                     <ButtonAction 
+                        loading={loading}
                         label={'Next'}
                         containerStyle={!isNull(selectedIndex) ? { backgroundColor: '#16a085' } : { } }
-                        onPress={onPressNext}
+                        onPress={loading ? null: onPressNext}
                     />
                 </View>
             </View>

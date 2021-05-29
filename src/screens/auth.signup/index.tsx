@@ -20,7 +20,6 @@ import FieldDate from '../../components/field/date';
 import FieldUpload from '../../components/field/upload';
 import FieldAddress from '../../components/field/address';
 import ButtonAction from '../../components/button/action';
-
 // Services
 import LocationServices from '../../services/location';
 import AuthServices from '../../services/auth';
@@ -44,7 +43,7 @@ const AuthSignUp = (props: any) => {
 
     switch (type) {
         case 'individual':
-            _name = `What's your name?`;
+            _name = `What's your full name?`;
             _location = `Where do you live?`;
             _upload = `Upload ID`;
             _upload_sub = `Government valid ID like Postal ID, UMID or your Voter's ID.`;
@@ -67,6 +66,7 @@ const AuthSignUp = (props: any) => {
 
     // States
     const [isMounted, setMount ] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     // Form States
     const [name, setName] = useState('');
@@ -97,38 +97,40 @@ const AuthSignUp = (props: any) => {
     const onImagePick = async () => {
         const photo: any = await ImageServices.getLocalImage();
         setImageURI(photo.uri);
-        console.log('Photo pick!');
-
-        // setPhoto(photo);
+        setPhoto(photo);
     }
 
     const uploadImage = async (token: any) => {
-        console.log('Upload Image');
+        setLoading(true);
 
         const source = { 
             token: token,
             uri: photo.uri, 
             type: photo.type,
-            name: generateID()
+            name: token
         };
-
 
         const form = new FormData();
         form.append("form", JSON.parse(JSON.stringify(source)));
 
         try {
             const res = await ImageServices.upload(form);
-            const { data, results } = res.data;
-            if(results) {
-                console.log('Upload Image Done')
-            }
+            console.log('RESULT', res.data)
+            console.log('FROM FORM' , form)
+            setLoading(false);
+            // const { data, results } = res.data;
+            // if(results) {
+            //     console.log('Upload Image Done')
+            // }
         } catch (error) {
-            
+            setLoading(false);
         }
 
     }
 
     const onPressNext = async () => {
+        setLoading(true);
+
         const params = {
             name,
             birthday,
@@ -145,12 +147,15 @@ const AuthSignUp = (props: any) => {
         try {
             const res = await AuthServices.signup(params);
             const { data, results } = res.data;
+            
             if(results) {
+                // console.log(data);
                 uploadImage(data.token);
-            }
+            } else {
 
+            }
         } catch (error) {
-            console.log(error);
+            setLoading(false);
         }
     }
 
@@ -317,14 +322,15 @@ const AuthSignUp = (props: any) => {
 
                     <View style={styles.action}>
                         <ButtonAction 
+                            loading={loading}
                             label={'Next'}
+                            labelStyle={{ marginRight: 15 }}
                             containerStyle={{ backgroundColor: '#16a085' }}
-                            onPress={onPressNext}
+                            onPress={loading ? null : onPressNext}
                         />
                     </View>
-                    
                 </View>
-                
+
             </ScrollView>
         </SafeAreaView>
     )

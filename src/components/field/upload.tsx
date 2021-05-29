@@ -56,7 +56,7 @@ export const styles = StyleSheet.create({
         zIndex: 1,
         paddingHorizontal: 15,
         paddingVertical: 8,
-        backgroundColor: '#00000010',
+        backgroundColor: '#00000005',
         borderRadius: 50
     },
     small: {

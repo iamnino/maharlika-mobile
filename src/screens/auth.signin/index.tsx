@@ -22,11 +22,16 @@ const AuthSignIn = (props: any) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    // Local States
+    const [loading, setLoading] = useState(false);
+
     const navigate = (screen: string, params: any = {}) => {
         navigation.navigate(screen, params);
     }
 
     const onPressSignIn = async () => {
+        setLoading(true);
+
         const params = {
             email,
             password
@@ -35,9 +40,12 @@ const AuthSignIn = (props: any) => {
         try {
             const res = await AuthServices.signin(params);
             const { data, results } = res.data;
-        } catch (error) {
             
+            setLoading(false);
+        } catch (error) {
+            setLoading(false);
         }
+
     }
     
     const onPressCreateAccount = () => {
@@ -71,9 +79,10 @@ const AuthSignIn = (props: any) => {
 
                             <View style={styles.action}>
                                 <ButtonAction 
+                                    loading={loading}
                                     label={'Sign In'}
                                     containerStyle={{ backgroundColor: '#16a085' }}
-                                    onPress={onPressSignIn}
+                                    onPress={loading ? null : onPressSignIn}
                                 />
                                 <Pressable style={styles.link} onPress={onPressCreateAccount}>
                                     <Text label={'Create Account'} 

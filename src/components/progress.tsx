@@ -49,8 +49,7 @@ const defaultProps = {
     progress: '0%'
 };
 
-
-export const Progress = (props: any) => {
+const Progress = (props: any) => {
     const { label, progress }: any = props;
     return (
         <View style={styles.container}>

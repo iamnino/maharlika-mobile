@@ -5,7 +5,10 @@ export const layout = StyleSheet.create({
     safearea: {
         flex: 1,
         paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0
-    } 
+    },
+    backdrop: {
+        backgroundColor: 'rgba(0, 0, 0, 0.4)' // Modal Backdrop Color
+    },
 });
 
 // Flex

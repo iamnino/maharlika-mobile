@@ -13,6 +13,7 @@ import { styles } from './styles';
 // Components
 import Text from '../../components/text';
 import Header from '../../components/navigation/header';
+import ButtonAction from '../../components/button/action';
 
 // Forms
 import FieldInput from '../../components/field/input';
@@ -27,14 +28,11 @@ const EventCreate = (props: any) => {
     }
 
     // States
-    const [name, setName] = useState('');
+    const [name, setName] = useState<string>('');
     const [time, setTime] = useState(null);
     const [date, setDate] = useState(null);
-    const [isDateVisible, setDateVisibility] = useState(false);
-    const [location, setLocation] = useState('');
-    const [description, setDescription] = useState(
-        `It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).`
-    );
+    const [location, setLocation] = useState<string>('');
+    const [description, setDescription] = useState<string>('');
 
     return (
         <SafeAreaView style={styles.safearea}>
@@ -57,6 +55,7 @@ const EventCreate = (props: any) => {
                             placeholder={'Select Date'}
                             value={date}
                             onSelect={setDate}
+                            enabled={true}
                         />
 
                         <FieldInput 
@@ -64,7 +63,10 @@ const EventCreate = (props: any) => {
                             onInputChange={setLocation}
                             placeholder={'Location'}
                             label={'Location'}
+                            numberOfLines={2}
+                            inputStyle={{ minHeight: 60 }}
                             multiline={true}
+                            enabled={true}
                         />
 
                         <FieldInput 
@@ -75,7 +77,20 @@ const EventCreate = (props: any) => {
                             multiline={true}
                             numberOfLines={5}
                             inputStyle={{ minHeight: 100 }}
+                            enabled={true}
                         />
+
+                        <View style={styles.action}>
+                            <ButtonAction 
+                                label={'Create Event'}
+                                containerStyle={{ backgroundColor: '#16a085' }}
+                                onPress={null}
+                            />
+                            <Pressable style={styles.link} onPress={null}>
+                                <Text label={'Cancel'} 
+                                    style={styles.label} type={'semiBold'} />
+                            </Pressable>
+                        </View>
 
                     </View>
                     

@@ -13,6 +13,8 @@ const ImageServices = {
         });
     },
     upload: async (params: any) => {
+        console.log('FROM UPLOAD SERVICES', params)
+
         return axios({
             method: 'POST',
             url: `${process.env.API_URL}/upload.php`,
