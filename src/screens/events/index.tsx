@@ -31,18 +31,18 @@ const Events = (props: any) => {
     );
 
     const [redeem, setRedeems] = useState([
-        { id: generateID(), image: Images.redeem_bangles, title: '', description: '', pearl: '100 pearls'}, 
-        { id: generateID(), image: Images.redeem_earing, title: '', description: '', pearl: '125 pearls'}, 
-        { id: generateID(), image: Images.redeem_lace, title: '', description: '', pearl: '125 pearls'},
-        { id: generateID(), image: Images.redeem_pen, title: '', description: '', pearl: '135 pearls'},
-        { id: generateID(), image: Images.redeem_pot, title: '', description: '', pearl: '145 pearls'}, 
-        { id: generateID(), image: Images.redeem_smile, title: '', description: '', pearl: '150 pearls'}, 
-        { id: generateID(), image: Images.redeem_tote, title: '', description: '', pearl: '165 pearls'},
-        { id: generateID(), image: Images.redeem_turtle, title: '', description: '', pearl: '165 pearls'},
-        { id: generateID(), image: Images.redeem_bangles, title: '', description: '', pearl: '200 pearls'}, 
-        { id: generateID(), image: Images.redeem_earing, title: '', description: '', pearl: '240 pearls'}, 
-        { id: generateID(), image: Images.redeem_lace, title: '', description: '', pearl: '250 pearls'},
-        { id: generateID(), image: Images.redeem_smile, title: '', description: '', pearl: '300 pearls'},
+        { id: generateID(), image: Images.redeem_bangles, title: 'White recycled plastic market tote.', description: '', pearl: '100 pearls'}, 
+        { id: generateID(), image: Images.redeem_earing, title: 'White recycled plastic market tote.', description: '', pearl: '125 pearls'}, 
+        { id: generateID(), image: Images.redeem_lace, title: 'White recycled plastic market tote.', description: '', pearl: '125 pearls'},
+        { id: generateID(), image: Images.redeem_pen, title: 'White recycled plastic market tote.', description: '', pearl: '135 pearls'},
+        { id: generateID(), image: Images.redeem_pot, title: 'White recycled plastic market tote.', description: '', pearl: '145 pearls'}, 
+        { id: generateID(), image: Images.redeem_smile, title: 'White recycled plastic market tote.', description: '', pearl: '150 pearls'}, 
+        { id: generateID(), image: Images.redeem_tote, title: 'White recycled plastic market tote.', description: '', pearl: '165 pearls'},
+        { id: generateID(), image: Images.redeem_turtle, title: 'White recycled plastic market tote.', description: '', pearl: '165 pearls'},
+        { id: generateID(), image: Images.redeem_bangles, title: 'White recycled plastic market tote.', description: '', pearl: '200 pearls'}, 
+        { id: generateID(), image: Images.redeem_earing, title: 'White recycled plastic market tote.', description: '', pearl: '240 pearls'}, 
+        { id: generateID(), image: Images.redeem_lace, title: 'White recycled plastic market tote.', description: '', pearl: '250 pearls'},
+        { id: generateID(), image: Images.redeem_smile, title: 'White recycled plastic market tote.', description: '', pearl: '300 pearls'},
     ]);
 
     const navigate = (screen: string, params: any = {}) => {
@@ -87,11 +87,15 @@ const Events = (props: any) => {
             style = {} 
         }
 
+        const onPress = () => {
+            navigate('Redeem', item);
+        }
+
         return (
             <CardRedeem 
                 data={item}
                 containerStyle={style}
-                onPress={null}
+                onPress={onPress}
             />
         )
     }

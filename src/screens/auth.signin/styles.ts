@@ -3,7 +3,7 @@ import { isIPhoneWithMonobrow } from 'react-native-status-bar-height';
 
 const IS_MONOBROW = isIPhoneWithMonobrow();
 
-import { flex, justify, bg, font, align } from '../../styles/global.styles';
+import { flex, justify, bg, font, align, shadow } from '../../styles/global.styles';
 
 export const styles = StyleSheet.create({ 
     safearea: {
@@ -30,7 +30,7 @@ export const styles = StyleSheet.create({
         width: '100%',
     },
     action: {
-
+        paddingHorizontal: 16
     },
     link: {
         ...align.center,
@@ -40,5 +40,6 @@ export const styles = StyleSheet.create({
     label: {
         fontSize: IS_MONOBROW ? 16: 21,
         color: '#16a085'
-    }
+    },
+    
 });

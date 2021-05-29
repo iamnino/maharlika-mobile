@@ -24,6 +24,7 @@ import TabNavigation from './components/navigation/tab';
 import EventOnBoard from './screens/event.onboard';
 import EventCreate from './screens/events.create';
 import EventDetails from './screens/events.details';
+import Redeem from './screens/redeem';
 
 // Auth
 import AuthSignIn from './screens/auth.signin';
@@ -55,6 +56,7 @@ const Router = () => {
                                 <Screen name="Event::OnBoard" component={EventOnBoard} options={transitionSlide}/>
                                 <Screen name="Event::Create" component={EventCreate} options={transitionSlide}/>
                                 <Screen name="Event::Details" component={EventDetails} options={transitionSlide}/>
+                                <Screen name="Redeem" component={Redeem} options={transitionSlide}/>
                             </Fragment>
                         }
                         { !isLoggedIn &&
