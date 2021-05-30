@@ -19,6 +19,8 @@ const EventDetails = (props: any) => {
     const { navigation, route }: any = props;
     const { params } = route;
 
+    console.log("EVENT DETAILS", params);
+
     // States
     const [activeTabIndex, setActiveTabIndex] = useState('about');
 
@@ -45,7 +47,7 @@ const EventDetails = (props: any) => {
                     </View>
 
                     <View style={styles.banner}>
-                        <Image source={Images.post_1} style={styles.image} />
+                        <Image source={{ uri: `${process.env.API_URL}/${params.cover}`}} style={styles.image} />
                         <Image source={Images.gradient_black} fadeDuration={1} style={styles.gradient}/>
                     </View>
 
@@ -54,7 +56,7 @@ const EventDetails = (props: any) => {
                             <View style={styles.contextInfo}>
                                 <View style={styles.avatar}/>
                                 <View style={styles.contextWrapper}>
-                                    <Text label={'Manila City Official'} 
+                                    <Text label={params.creator_name} 
                                         type={'semiBold'} style={styles.contextTitle}/>
                                     <View style={styles.contextMetaWrapper}>
                                         <Text label={'Monday, May 30 at 8AM'} 
@@ -86,7 +88,7 @@ const EventDetails = (props: any) => {
 
                             <View style={styles.context}>
                                 <View style={[styles.contextDescriptionWrapper, { marginBottom: 12 }]}>
-                                    <Text label={'Weekly Coastal Clean-up.\nJoin our volunteer and get FREE grocery basket.\nLimited to 100 slots only.'} 
+                                    <Text label={params.description} 
                                         type={'medium'} style={styles.contextDescription}/>
                                 </View>
 
@@ -100,7 +102,7 @@ const EventDetails = (props: any) => {
                                 <View style={[styles.contextDescriptionWrapper, { marginBottom: 12 }]}  >
                                     <Text label={'Location'} 
                                         type={'semiBold'} style={styles.contextDescription}/>
-                                    <Text label={'Roxas Blvd, Malate, Manila, 1004 Metro Manila'} 
+                                    <Text label={params.location} 
                                         type={'medium'} style={styles.contextDescription}/>
                                 </View>
                             </View>

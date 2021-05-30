@@ -15,6 +15,9 @@ import CardRedeem from '../../components/card/redeem';
 // Constants
 import Images from '../../constants/images';
 
+// Services
+import EventServices from '../../services/event';
+
 // Utils
 import { generateID } from '../../helpers/utils.helper';
 
@@ -24,12 +27,7 @@ const Events = (props: any) => {
 
     // States
     const [activeTabIndex, setActiveTabIndex] = useState('all');
-
-    const [data, setData] = useState([
-        { id: '1' }, 
-        { id: '2' }, 
-        { id: '3' }]
-    );
+    const [data, setData] = useState<Array<any>>([]);
 
     const [redeem, setRedeems] = useState([
         { id: generateID(), image: Images.redeem_bangles, title: 'White recycled plastic market tote.', description: '', pearl: '100 pearls'}, 
@@ -70,11 +68,13 @@ const Events = (props: any) => {
         }
 
         const onPress = () => {
+            console.log(item);
             navigate('Event::Details', item);
         }
 
         return (
             <CardEvent 
+                data={item}
                 containerStyle={style}
                 onPress={onPress}
             />
@@ -113,6 +113,16 @@ const Events = (props: any) => {
     const getEventsByFilter = async (key: string) => {
         console.log('Load Lists', key, );
         console.log('User', user.token);
+
+        const params = {
+            type: key,
+            userId: user.id,
+            token: user.token
+        }
+
+        const res = await EventServices.filter(params);
+        setData(res.data);
+        
     }
 
     useEffect(() => {
@@ -159,6 +169,7 @@ const Events = (props: any) => {
                         renderItem={renderRedeem}
                     />
                 }
+                
             </View>
             { isRedeemActive() &&
                 <View style={styles.pointsContainer}>

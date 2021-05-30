@@ -32,6 +32,7 @@ export const styles = StyleSheet.create({
     header: {
         ...flex.row,
         ...align.center,
+        ...justify.spaceBetween,
         marginTop: STATUS_BAR_HEIGHT,
         paddingTop: 12,
         paddingHorizontal: 12,
@@ -104,7 +105,7 @@ export const styles = StyleSheet.create({
     action: {
         ...flex.column,
         ...justify.spaceBetween,
-        marginBottom: 8,
+        paddingBottom: 25,
         paddingHorizontal: 16
     },
 

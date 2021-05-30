@@ -8,6 +8,7 @@ import { align, flex, justify } from '../styles/global.styles';
 // Icons
 import HeartIcon from '../components/icons/heart';
 import BackIcon from '../components/icons/back';
+import QRIcon from '../components/icons/qr-scan';
 import SearchIcon from '../components/icons/search';
 import Text from './text';
 
@@ -22,6 +23,15 @@ export const styles = StyleSheet.create({
         height: 40,
         width: 40,
         paddingRight: 5,
+        backgroundColor: '#12121250',
+        borderRadius: 50
+    },
+    qr: {
+        ...flex.row,
+        ...align.center,
+        ...justify.center,
+        height: 40,
+        width: 40,
         backgroundColor: '#12121250',
         borderRadius: 50
     },
@@ -61,6 +71,15 @@ export const BackButton = (props: any) => {
     return (
         <Pressable style={styles.back} onPress={onPress}>
             <BackIcon color={'#FFF'} width={24} height={24} />
+        </Pressable> 
+    )
+}
+
+export const QRButton = (props: any) => {
+    const { onPress } = props;
+    return (
+        <Pressable style={styles.qr} onPress={onPress}>
+            <QRIcon color={'#FFF'} width={29} height={29} />
         </Pressable> 
     )
 }

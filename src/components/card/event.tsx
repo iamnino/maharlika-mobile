@@ -126,7 +126,7 @@ const CardEvent = (props: any) => {
                     <View style={styles.contextInfo}>
                         <View style={styles.avatar}/>
                         <View style={styles.contextWrapper}>
-                            <Text label={'Manila City Official'} 
+                            <Text label={data.creator_name}
                                 type={'semiBold'} style={styles.contextTitle}/>
                             <View style={styles.contextMetaWrapper}>
                                 <Text label={'Monday, May 30 at 8AM'} 
@@ -137,13 +137,13 @@ const CardEvent = (props: any) => {
                         </View>
                     </View>
                     <View style={styles.contextDescriptionWrapper}>
-                        <Text label={'Weekly Coastal Clean-up.\nJoin our volunteer and get FREE grocery basket.\nLimited to 100 slots only.'} 
+                        <Text label={data.description} 
                             type={'medium'} style={styles.contextDescription}/>
                     </View>
                 </View>
                 
                 <View style={styles.banner}>
-                    <Image source={Images.post_1} style={styles.image} />
+                    <Image source={{ uri: `${process.env.API_URL}/${data.cover}`}} style={styles.image} />
                     <Image source={Images.gradient_black} fadeDuration={1} style={styles.gradient}/>
                 </View>
 

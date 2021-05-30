@@ -84,12 +84,12 @@ const EventCreate = (props: any) => {
         }
 
         try {
-            console.log('GO HERE')
             const res = await EventServices.create(form);
             const { data, results } = res.data;
             if(results) {
                 uploadImage(data.id);
             }
+            setLoading(false);
         } catch (error) {
             setLoading(false);
         }

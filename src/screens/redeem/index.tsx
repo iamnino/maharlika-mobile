@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState, useCallback } from 'react';
+import React, { useRef, useEffect, useState, useCallback, Fragment } from 'react';
 import { Image, Pressable, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
@@ -7,7 +7,7 @@ import { styles } from './styles';
 
 // Components
 import Text from '../../components/text';
-import { BackButton } from '../../components/buttons';
+import { BackButton, QRButton } from '../../components/buttons';
 import ButtonAction from '../../components/button/action';
 
 // Constants
@@ -18,7 +18,7 @@ const Redeem = (props: any) => {
     const { params } = route;
 
     // States
-    const [activeTabIndex, setActiveTabIndex] = useState('about');
+    const [qrData, setQRData] = useState(false);
 
     const navigate = (screen: string, params: any = {}) => {
         navigation.navigate(screen, params);
@@ -29,7 +29,12 @@ const Redeem = (props: any) => {
     }
 
     const onPressRedeem = () =>  {
-        navigate('Redeem::Scan', params);
+        console.log('Redeem')
+    }
+
+    const onPressQR = () => {
+        setQRData(true);
+        // navigate('Redeem::Scan', params);
     }
 
     return (
@@ -39,6 +44,7 @@ const Redeem = (props: any) => {
 
                     <View style={styles.header}>
                         <BackButton onPress={goBack} />
+                        <QRButton onPress={onPressQR} />
                     </View>
 
                     <View style={styles.banner}>
@@ -100,16 +106,50 @@ const Redeem = (props: any) => {
                         
                         </View>
 
-                        <ButtonAction 
-                            loading={false}
-                            label={'Redeem'}
-                            containerStyle={{ backgroundColor: '#16a085' }}
-                            onPress={onPressRedeem}
-                        />
-                        <Pressable style={styles.link} onPress={null}>
-                            <Text label={'Send as Gift'} 
-                                style={styles.label} type={'semiBold'} />
-                        </Pressable>
+                        { !qrData &&
+                            <ButtonAction 
+                                loading={false}
+                                label={'Scan QR Code'}
+                                containerStyle={{ backgroundColor: '#16a085' }}
+                                onPress={onPressQR}
+                            />
+                        }
+
+                        { qrData &&
+                            <Fragment>
+                                <View style={styles.card}>
+
+                                <View style={[styles.cardRow, { marginBottom: 12, flexDirection: 'column' }]}>
+                                    <View style={[styles.contextMetaWrapper, { marginBottom: 8 }]}>
+                                        <Text label={'Redemption Center'} 
+                                            type={'medium'} style={styles.contextMeta}/>
+                                    </View>
+                                    <Text label={'The Flap | SM Mall of Asia'} 
+                                        type={'semiBold'} style={styles.contextTitle}/>
+                                </View>
+
+                                <View style={[styles.cardRow, { marginBottom: 12 }]}>
+                                    <View style={styles.contextMetaWrapper}>
+                                        <Text label={'Redemption Code'} 
+                                            type={'medium'} style={styles.contextMeta}/>
+                                    </View>
+                                    <Text label={'QBEX1'} 
+                                        type={'semiBold'} 
+                                        style={{...styles.contextTitle, ...{ color: '#16a085' }}}/>
+                                </View>
+
+                                </View>
+
+                                <ButtonAction 
+                                    loading={false}
+                                    label={'Redeem'}
+                                    containerStyle={{ backgroundColor: '#16a085' }}
+                                    onPress={onPressRedeem}
+                                />
+                            </Fragment>
+                        }
+
+
                     </View>
 
                 </View>

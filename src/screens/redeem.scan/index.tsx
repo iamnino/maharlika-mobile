@@ -35,7 +35,7 @@ const RedeemScan = (props: any) => {
         params.qr = data;
         params.type = type;
 
-        navigate('Redeem::Lists', params)
+        navigate('Redeem', params)
       };
 
       useEffect(() => {
