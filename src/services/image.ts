@@ -13,11 +13,19 @@ const ImageServices = {
         });
     },
     upload: async (params: any) => {
-        console.log('FROM UPLOAD SERVICES', params)
-
         return axios({
             method: 'POST',
             url: `${process.env.API_URL}/upload`,
+            headers: {
+                'Content-Type' :'multipart/form-data'
+            },
+            data: params
+        });
+    },
+    uploadEventCover: async (params: any) => {
+        return axios({
+            method: 'POST',
+            url: `${process.env.API_URL}/event/upload`,
             headers: {
                 'Content-Type' :'multipart/form-data'
             },

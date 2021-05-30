@@ -110,18 +110,22 @@ const AuthSignUp = (props: any) => {
             type: photo.type,
             name: id
         };
-
+        
         const form = new FormData();
         form.append("form", JSON.parse(JSON.stringify(source)));
 
         try {
             const res = await ImageServices.upload(form);
+            const { data, result } = res.data;
+
+            if(result) {
+                navigate('Auth::SignIn', { new: true });
+            }
+            
             setLoading(false);
-            navigate('Auth::SignIn', { new: true });
         } catch (error) {
             setLoading(false);
         }
-
     }
 
     const onPressNext = async () => {

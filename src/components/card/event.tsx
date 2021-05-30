@@ -147,14 +147,12 @@ const CardEvent = (props: any) => {
                     <Image source={Images.gradient_black} fadeDuration={1} style={styles.gradient}/>
                 </View>
 
-                <View style={styles.actions}>
-
+                {/* <View style={styles.actions}>
                     <View style={styles.action}>
                         <Progress label={'65 slots left'} progress={'40%'} />
                         <Action label={'Join'}/>
                     </View>
-
-                </View>
+                </View> */}
             </View>
         </Pressable>
     )

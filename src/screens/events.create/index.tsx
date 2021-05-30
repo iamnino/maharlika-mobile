@@ -86,7 +86,36 @@ const EventCreate = (props: any) => {
         try {
             console.log('GO HERE')
             const res = await EventServices.create(form);
-            console.log('RESULT FROM SERVER', res.data)
+            const { data, results } = res.data;
+            if(results) {
+                uploadImage(data.id);
+            }
+        } catch (error) {
+            setLoading(false);
+        }
+    }
+
+
+    const uploadImage = async (id: any) => {
+        setLoading(true);
+
+        const source = { 
+            uri: photo.uri, 
+            type: photo.type,
+            name: id
+        };
+
+        const form = new FormData();
+        form.append("form", JSON.parse(JSON.stringify(source)));
+
+        console.log(form)
+
+        try {
+            const res = await ImageServices.uploadEventCover(form);
+            // const { data, result } = res.data;
+            console.log('Dafa', res.data);
+            // if(result) {
+            // }
             setLoading(false);
         } catch (error) {
             setLoading(false);

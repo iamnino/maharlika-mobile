@@ -25,7 +25,7 @@ export const styles = StyleSheet.create({
     },
     wrapper: {
         ...bg.white,
-        ...shadow.card,
+        // ...shadow.card,
     },
 
     // Header
@@ -123,7 +123,7 @@ export const styles = StyleSheet.create({
     tab: {
         // borderWidth: 1,
         // borderColor: 'red',
-        minHeight: 300,
+        minHeight: 200,
         width: '100%'
     }
     

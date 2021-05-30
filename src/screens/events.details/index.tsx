@@ -10,6 +10,7 @@ import Text from '../../components/text';
 import Progress from '../../components/progress';
 import Tabs from '../../components/tabs';
 import { Action, BackButton } from '../../components/buttons';
+import ButtonAction from '../../components/button/action';
 
 // Constants
 import Images from '../../constants/images';
@@ -104,6 +105,15 @@ const EventDetails = (props: any) => {
                                 </View>
                             </View>
 
+                        </View>
+
+                        <View style={[styles.actions, { paddingBottom: 25 }]}>
+                            <ButtonAction
+                                loading={false}
+                                label={'Join'}
+                                containerStyle={{ backgroundColor: '#16a085' }}
+                                onPress={null}
+                            />
                         </View>
                     </View>
                     
