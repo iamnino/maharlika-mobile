@@ -48,10 +48,6 @@ const AuthSignIn = (props: any) => {
         navigate('Auth::OnBoard')
     }
 
-    useEffect(() => {
-        console.log('Change in Props', isLoading)
-    }, [isLoading]);
-
     return (
         <SafeAreaView style={styles.safearea} edges={['top']}>
             <View style={styles.layout}>

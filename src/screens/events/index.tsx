@@ -95,7 +95,6 @@ const Events = (props: any) => {
     const tabs = [
         { id: '1', key: 'all', label: 'All' },
         { id: '3', key: 'upcoming', label: 'Upcoming' },
-        // { id: '4', key: 'completed', label: 'Completed' },
         { id: '4', key: 'host', label: 'My Events' },
         { id: '5', key: 'redeem', label: 'Redeem' },
     ]
@@ -112,7 +111,6 @@ const Events = (props: any) => {
         }
 
         const onPress = () => {
-            console.log(item);
             navigate('Event::Details', item);
         }
 
@@ -150,14 +148,9 @@ const Events = (props: any) => {
     }
 
     const getRedeemLists = async () => {
-        console.log('Load Redeemables');
-        console.log('User', user.token);
     }
 
     const getEventsByFilter = async (key: string) => {
-        console.log('Load Lists', key, );
-        console.log('User', user.token);
-
         const params = {
             type: key,
             userId: user.id,

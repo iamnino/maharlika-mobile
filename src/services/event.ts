@@ -13,6 +13,12 @@ const EventServices = {
     action: async (params: any) => {
         return header.post('/event/action', params); // Join or Leave
     },
+    status: async (params: any) => {
+        return header.post('/event/status', params);
+    },
+    participant: async (params: any) => {
+        return header.post('/event/participant', params);
+    },
 }
 
 export default EventServices;

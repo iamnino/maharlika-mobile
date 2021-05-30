@@ -17,8 +17,6 @@ export const doLogin = (params: any) => async (dispatch: any) => {
         const res = await AuthServices.signin(params);
         const { data, results } = res.data;
 
-        console.log(data, results);
-
         if(results){
             dispatch({ 
                 type: LOGIN_SUCCESS, 

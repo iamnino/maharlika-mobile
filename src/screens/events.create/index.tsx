@@ -108,14 +108,12 @@ const EventCreate = (props: any) => {
         const form = new FormData();
         form.append("form", JSON.parse(JSON.stringify(source)));
 
-        console.log(form)
-
         try {
             const res = await ImageServices.uploadEventCover(form);
-            // const { data, result } = res.data;
-            console.log('Dafa', res.data);
-            // if(result) {
-            // }
+            const { data, result } = res.data;
+            if(result) {
+                navigate('Events');
+            }
             setLoading(false);
         } catch (error) {
             setLoading(false);

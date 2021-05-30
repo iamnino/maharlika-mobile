@@ -111,9 +111,6 @@ const FieldDropdown = (props: any) => {
          if(!isUndefined(data[value.row])) {
              _setScope(data[value.row].title);
          }
-
-        console.log(data[value.row]);
-
      }, [value]);
     
     return (

@@ -21,12 +21,18 @@ import Images from '../../constants/images';
 // Services
 import EventServices from '../../services/event';
 
+// Utils
+import { generateID } from '../../helpers/utils.helper';
+
 const EventDetails = (props: any) => {
     const { navigation, route, user }: any = props;
     const { params } = route;
 
     // States
     const [activeTabIndex, setActiveTabIndex] = useState('about');
+    const [isJoined, setJoin] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [participants, setParticipants] = useState<Array<any>>([]);
 
     const navigate = (screen: string, params: any = {}) => {
         navigation.navigate(screen, params);
@@ -42,21 +48,57 @@ const EventDetails = (props: any) => {
     ]
 
     const onPressJoin = async () => {
+        setLoading(true);
         const form = {
             userId: user.id,
             token: user.token,
             eventId: params.id
         }
 
-        console.log(form);
-
-        // try {
-        //     const res = await EventServices.action(form);
-        //     console.log(res);
-        // } catch (error) {
-            
-        // }
+        try {
+            const res = await EventServices.action(form);
+            if(res.data) {
+                getStatus();
+                getParticipant();
+            }
+        } catch (error) {
+            setLoading(false);
+        }
     }
+
+    const getStatus = async () => {
+        const form = {
+            userId: user.id,
+            token: user.token,
+            eventId: params.id
+        }
+
+        try {
+            const res = await EventServices.status(form);
+            setJoin(res.data.results);
+            setLoading(false);
+        } catch (error) {
+            setLoading(false);
+        }
+    }
+
+    const getParticipant = async () => {
+        const form = {
+            eventId: params.id
+        }
+
+        try {
+            const res = await EventServices.participant(form);
+            console.log('Participants', res.data);
+            setParticipants(res.data);
+        } catch (error) {
+        }
+    }
+
+    useEffect(() => {
+        getStatus();
+        getParticipant();
+    }, []);
     
     return (
         <View style={styles.safearea}>
@@ -150,21 +192,26 @@ const EventDetails = (props: any) => {
                             { activeTabIndex === 'participant' &&
                                 <View style={styles.context}>
                                     <View style={[styles.contextDescriptionWrapper, { marginBottom: 12 }]}  >
+                                        {/* {
+                                            participants.map(() => {
+                                                return ( */}
                                         <Text label={'No Participant Yet'} 
-                                            type={'medium'} style={styles.contextDescription}/>
+                                        type={'medium'} style={styles.contextDescription}/>
+                                                {/* )
+                                            })
+                                        } */}
                                     </View>
                                 </View>
                             }
-
                         </View>
 
                         {   user.id != params.creator_id &&
                             <View style={[styles.actions, { paddingBottom: 25 }]}>
                                 <ButtonAction
-                                    loading={false}
-                                    label={'Join'}
-                                    containerStyle={{ backgroundColor: '#16a085' }}
-                                    onPress={onPressJoin}
+                                    loading={loading}
+                                    label={isJoined ? 'Leave': 'Join'}
+                                    containerStyle={{ backgroundColor: isJoined ? '#FF5151': '#16a085' }}
+                                    onPress={loading ? null: onPressJoin}
                                 />
                             </View>
                         }
