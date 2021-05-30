@@ -27,6 +27,10 @@ const EventOnBoard = (props: any) => {
         navigation.navigate(screen, params);
     }
 
+    const goBack = () => {
+        navigation.goBack();
+    }
+
     const actions = [
         { id: generateID(), type: 'webinar', label: 'Webinar' },
         { id: generateID(), type: 'seminar', label: 'Seminar' },
@@ -89,6 +93,10 @@ const EventOnBoard = (props: any) => {
                         containerStyle={!isNull(selectedIndex) ? { backgroundColor: '#16a085' } : { } }
                         onPress={loading ? null: onPressNext}
                     />
+                    <Pressable style={styles.link} onPress={goBack}>
+                        <Text label={'Cancel'} 
+                            style={styles.linkLabel} type={'semiBold'} />
+                    </Pressable>
                 </View>
             </View>
         </SafeAreaView>

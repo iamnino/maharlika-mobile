@@ -17,7 +17,7 @@ const ImageServices = {
 
         return axios({
             method: 'POST',
-            url: `${process.env.API_URL}/upload.php`,
+            url: `${process.env.API_URL}/upload`,
             headers: {
                 'Content-Type' :'multipart/form-data'
             },

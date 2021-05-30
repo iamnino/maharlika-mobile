@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { FlatList, Pressable, View } from 'react-native';
+import { connect, useSelector } from 'react-redux';
 
 // Screen Styles
 import { styles } from './styles';
@@ -18,7 +19,7 @@ import Images from '../../constants/images';
 import { generateID } from '../../helpers/utils.helper';
 
 const Events = (props: any) => {
-    const { navigation, route }: any = props;
+    const { navigation, route, user }: any = props;
     const { params } = route;
 
     // States
@@ -51,9 +52,9 @@ const Events = (props: any) => {
 
     const tabs = [
         { id: '1', key: 'all', label: 'All' },
-        { id: '2', key: 'recently-added', label: 'Recently Added' },
         { id: '3', key: 'upcoming', label: 'Upcoming' },
         { id: '4', key: 'completed', label: 'Completed' },
+        { id: '4', key: 'host', label: 'My Events' },
         { id: '5', key: 'redeem', label: 'Redeem' },
     ]
 
@@ -106,10 +107,12 @@ const Events = (props: any) => {
 
     const getRedeemLists = async () => {
         console.log('Load Redeemables');
+        console.log('User', user.token);
     }
 
     const getEventsByFilter = async (key: string) => {
-        console.log('Load Lists', key);
+        console.log('Load Lists', key, );
+        console.log('User', user.token);
     }
 
     useEffect(() => {
@@ -117,7 +120,7 @@ const Events = (props: any) => {
             getRedeemLists();
         } else {
             getEventsByFilter(activeTabIndex);
-        }
+        }        
     }, [activeTabIndex]);
 
     return (
@@ -169,4 +172,15 @@ const Events = (props: any) => {
     )
 }
 
-export default Events;
+const bindAction = (dispatch: any) => {
+    return {}
+}
+
+const mapStateToProps = (state: any) => {
+    return {
+        error: state.auth.error,
+        user: state.auth.user
+    };
+}
+
+export default connect(mapStateToProps, bindAction)(Events);

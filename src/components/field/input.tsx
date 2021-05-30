@@ -44,7 +44,8 @@ const propTypes = {
     numberOfLines: PropTypes.number,
     inputStyle: PropTypes.any,
     enabled: PropTypes.bool,
-    secure: PropTypes.bool
+    secure: PropTypes.bool,
+    keyboard: PropTypes.string
 };
 
 const defaultProps = {
@@ -56,7 +57,8 @@ const defaultProps = {
     numberOfLines: 1,
     inputStyle: {},
     enabled: false,
-    secure: false
+    secure: false,
+    keyboard: 'default',
 };
 
 const FieldInput = (props: any) => {
@@ -69,7 +71,8 @@ const FieldInput = (props: any) => {
         numberOfLines,
         inputStyle,
         enabled,
-        secure
+        secure,
+        keyboard
     } = props;
 
     return (
@@ -85,6 +88,7 @@ const FieldInput = (props: any) => {
                     numberOfLines={numberOfLines}
                     editable={enabled}
                     secureTextEntry={secure}
+                    keyboardType={keyboard}
                 />
             </View>
         </View>

@@ -69,4 +69,13 @@ export const styles = StyleSheet.create({
         paddingTop: 12,
         paddingBottom: 18
     },
+    link: {
+        ...align.center,
+        marginTop: 25,
+        // borderWidth: 1
+    },
+    linkLabel: {
+        fontSize: IS_MONOBROW ? 16: 21,
+        color: '#16a085'
+    }
 });
