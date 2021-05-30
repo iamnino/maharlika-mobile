@@ -39,14 +39,14 @@ const EventCreate = (props: any) => {
     }
 
     // Form States
-    const [name, setName] = useState<string>('Event One Coastal');
-    const [link, setLink] = useState<string>('https://zoom.us/j/93755886815');
+    const [name, setName] = useState<string>('');
+    const [link, setLink] = useState<string>('');
     const [capacity, setCapacity] = useState(null);
-    const [scope, setScope] = useState(new IndexPath(1));
+    const [scope, setScope] = useState(new IndexPath(0));
     const [start, setStart] = useState('');
     const [end, setEnd] = useState('');
-    const [location, setLocation] = useState<string>('Manila Bay Coast');
-    const [description, setDescription] = useState<string>('Some Description');
+    const [location, setLocation] = useState<string>('');
+    const [description, setDescription] = useState<string>('');
 
     // Local States
     const [photo, setPhoto] = useState<any>(null);

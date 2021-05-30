@@ -39,6 +39,11 @@ const redeem_smile = require('../../assets/images/redeem/redeem-smile.png');
 const redeem_tote = require('../../assets/images/redeem/redeem-tote.png');
 const redeem_turtle = require('../../assets/images/redeem/redeem-turtle.png');
 
+const feed_1 = require('../../assets/images/events/feed-1.png');
+const feed_2 = require('../../assets/images/events/feed-2.png');
+const feed_3 = require('../../assets/images/events/feed-3.png');
+const feed_4 = require('../../assets/images/events/feed-4.png');
+
 export default {
     banner_1,
     banner_health_and_beauty,
@@ -69,5 +74,9 @@ export default {
     redeem_pot,
     redeem_smile,
     redeem_tote,
-    redeem_turtle
+    redeem_turtle,
+    feed_1,
+    feed_2,
+    feed_3,
+    feed_4,
 }

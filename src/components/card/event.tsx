@@ -117,7 +117,15 @@ const defaultProps = {
 
 const CardEvent = (props: any) => {
     const { data, containerStyle, onPress }: any = props;
-    
+
+    let banner;
+
+    if(data.banner) {
+        banner = data.banner;
+    } else {
+        banner = { uri: `${process.env.API_URL}/${data.cover}` } ;
+    }
+
     return (
         <Pressable style={[styles.container, containerStyle]} onPress={onPress}>
             <View style={styles.wrapper}>
@@ -129,10 +137,10 @@ const CardEvent = (props: any) => {
                             <Text label={data.creator_name}
                                 type={'semiBold'} style={styles.contextTitle}/>
                             <View style={styles.contextMetaWrapper}>
-                                <Text label={'Monday, May 30 at 8AM'} 
+                                <Text label={data.start} 
                                     type={'medium'} style={styles.contextMeta}/>
-                                <Text label={'Manila Bay Coast'} 
-                                    type={'medium'} style={styles.contextMeta}/>
+                                {/* <Text label={'Manila Bay Coast'} 
+                                    type={'medium'} style={styles.contextMeta}/> */}
                             </View>
                         </View>
                     </View>
@@ -143,7 +151,7 @@ const CardEvent = (props: any) => {
                 </View>
                 
                 <View style={styles.banner}>
-                    <Image source={{ uri: `${process.env.API_URL}/${data.cover}`}} style={styles.image} />
+                    <Image source={banner} style={styles.image} />
                     <Image source={Images.gradient_black} fadeDuration={1} style={styles.gradient}/>
                 </View>
 

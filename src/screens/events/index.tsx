@@ -30,18 +30,62 @@ const Events = (props: any) => {
     const [data, setData] = useState<Array<any>>([]);
 
     const [redeem, setRedeems] = useState([
-        { id: generateID(), image: Images.redeem_bangles, title: 'White recycled plastic market tote.', description: '', pearl: '100 pearls'}, 
-        { id: generateID(), image: Images.redeem_earing, title: 'White recycled plastic market tote.', description: '', pearl: '125 pearls'}, 
-        { id: generateID(), image: Images.redeem_lace, title: 'White recycled plastic market tote.', description: '', pearl: '125 pearls'},
-        { id: generateID(), image: Images.redeem_pen, title: 'White recycled plastic market tote.', description: '', pearl: '135 pearls'},
-        { id: generateID(), image: Images.redeem_pot, title: 'White recycled plastic market tote.', description: '', pearl: '145 pearls'}, 
-        { id: generateID(), image: Images.redeem_smile, title: 'White recycled plastic market tote.', description: '', pearl: '150 pearls'}, 
-        { id: generateID(), image: Images.redeem_tote, title: 'White recycled plastic market tote.', description: '', pearl: '165 pearls'},
-        { id: generateID(), image: Images.redeem_turtle, title: 'White recycled plastic market tote.', description: '', pearl: '165 pearls'},
-        { id: generateID(), image: Images.redeem_bangles, title: 'White recycled plastic market tote.', description: '', pearl: '200 pearls'}, 
-        { id: generateID(), image: Images.redeem_earing, title: 'White recycled plastic market tote.', description: '', pearl: '240 pearls'}, 
-        { id: generateID(), image: Images.redeem_lace, title: 'White recycled plastic market tote.', description: '', pearl: '250 pearls'},
-        { id: generateID(), image: Images.redeem_smile, title: 'White recycled plastic market tote.', description: '', pearl: '300 pearls'},
+        { 
+            id: generateID(), 
+            image: Images.redeem_tote, 
+            title: 'White recycled plastic market tote', 
+            description: 'This hand crocheted market tote is created from approximately 60 recycled plastic bags. This is one of the most environmentally friendly bags you can take grocery shopping! Sturdy and surprisingly strong.', 
+            pearl: '165 pearls'
+        },
+        { 
+            id: generateID(), 
+            image: Images.redeem_turtle, 
+            title: 'Sea Turtle. Handcraft Holder Gift made of recycled plastic', 
+            description: '', 
+            pearl: '165 pearls'
+        },
+        { 
+            id: generateID(), 
+            image: Images.redeem_bangles, 
+            title: 'African bangles handcrafted with recycled and woven plastic, solidarity bracelets in different colors', 
+            description: '', 
+            pearl: '100 pearls'
+        }, 
+        { 
+            id: generateID(), 
+            image: Images.redeem_earing, 
+            title: 'Recycled plastic earrings, Earth collection, dangle earrings', 
+            description: '', 
+            pearl: '125 pearls'
+        }, 
+        { 
+            id: generateID(), 
+            image: Images.redeem_lace, 
+            title: 'African Vinyl Disc Beads - Recycled Phono Records', 
+            description: '', 
+            pearl: '125 pearls'
+        },
+        { 
+            id: generateID(), 
+            image: Images.redeem_pen, 
+            title: 'HDPE Pens/Slimline pen/handmade/100% Recycled', 
+            description: '', 
+            pearl: '135 pearls'
+        },
+        { 
+            id: generateID(), 
+            image: Images.redeem_pot, 
+            title: 'Hexagon Coasters made from 100% Recycled Plastic (4-pack)', 
+            description: '', 
+            pearl: '145 pearls'
+        }, 
+        { 
+            id: generateID(), 
+            image: Images.redeem_smile, 
+            title: 'Recycled plastic pouch / Recycled rice bag kit / Plastic pocket', 
+            description: '', 
+            pearl: '150 pearls'
+        }
     ]);
 
     const navigate = (screen: string, params: any = {}) => {
@@ -51,7 +95,7 @@ const Events = (props: any) => {
     const tabs = [
         { id: '1', key: 'all', label: 'All' },
         { id: '3', key: 'upcoming', label: 'Upcoming' },
-        { id: '4', key: 'completed', label: 'Completed' },
+        // { id: '4', key: 'completed', label: 'Completed' },
         { id: '4', key: 'host', label: 'My Events' },
         { id: '5', key: 'redeem', label: 'Redeem' },
     ]
@@ -120,9 +164,15 @@ const Events = (props: any) => {
             token: user.token
         }
 
-        const res = await EventServices.filter(params);
+        let res: any;
+
+        if(key === 'host') {
+            res = await EventServices.host(params);
+        } else {
+            res = await EventServices.filter(params);
+        }
+
         setData(res.data);
-        
     }
 
     useEffect(() => {

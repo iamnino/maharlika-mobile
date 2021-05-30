@@ -1,6 +1,9 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react';
 import { Image, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
+import { connect, useSelector } from 'react-redux';
+
+import isEmpty from 'lodash/isEmpty';
 
 // Screen Styles
 import { styles } from './styles';
@@ -15,11 +18,12 @@ import ButtonAction from '../../components/button/action';
 // Constants
 import Images from '../../constants/images';
 
-const EventDetails = (props: any) => {
-    const { navigation, route }: any = props;
-    const { params } = route;
+// Services
+import EventServices from '../../services/event';
 
-    console.log("EVENT DETAILS", params);
+const EventDetails = (props: any) => {
+    const { navigation, route, user }: any = props;
+    const { params } = route;
 
     // States
     const [activeTabIndex, setActiveTabIndex] = useState('about');
@@ -37,6 +41,23 @@ const EventDetails = (props: any) => {
         { id: '2', key: 'participant', label: 'Participant' },
     ]
 
+    const onPressJoin = async () => {
+        const form = {
+            userId: user.id,
+            token: user.token,
+            eventId: params.id
+        }
+
+        console.log(form);
+
+        // try {
+        //     const res = await EventServices.action(form);
+        //     console.log(res);
+        // } catch (error) {
+            
+        // }
+    }
+    
     return (
         <View style={styles.safearea}>
             <ScrollView style={styles.layout}>
@@ -59,20 +80,17 @@ const EventDetails = (props: any) => {
                                     <Text label={params.creator_name} 
                                         type={'semiBold'} style={styles.contextTitle}/>
                                     <View style={styles.contextMetaWrapper}>
-                                        <Text label={'Monday, May 30 at 8AM'} 
-                                            type={'medium'} style={styles.contextMeta}/>
-                                        <Text label={'Manila Bay Coast'} 
+                                        <Text label={params.start} 
                                             type={'medium'} style={styles.contextMeta}/>
                                     </View>
                                 </View>
                             </View>
-                            
                         </View>
 
                         <View style={styles.actions}>
                             <View style={styles.action}>
                                 <Progress label={'65 slots left'} progress={'40%'} />
-                                <Action label={'Join'}/>
+                                {/* <Action label={'Join'}/> */}
                             </View>
                         </View>
                     </View>
@@ -86,37 +104,71 @@ const EventDetails = (props: any) => {
                         />
                         <View style={styles.tab}>
 
-                            <View style={styles.context}>
-                                <View style={[styles.contextDescriptionWrapper, { marginBottom: 12 }]}>
-                                    <Text label={params.description} 
-                                        type={'medium'} style={styles.contextDescription}/>
-                                </View>
+                            { activeTabIndex === 'about' &&
+                                <View style={styles.context}>
+                                    <View style={[styles.contextDescriptionWrapper, { marginBottom: 12 }]}>
+                                        <Text label={params.description} 
+                                            type={'medium'} style={styles.contextDescription}/>
+                                    </View>
 
-                                <View style={[styles.contextDescriptionWrapper, { marginBottom: 12 }]}  >
-                                    <Text label={'Date and time'} 
-                                        type={'semiBold'} style={styles.contextDescription}/>
-                                    <Text label={'Monday, May 30, 2021\n8AM to 12PM'} 
-                                        type={'medium'} style={styles.contextDescription}/>
-                                </View>
+                                    <View style={[styles.contextDescriptionWrapper, { marginBottom: 12 }]}  >
+                                        <Text label={'Date and Time Start'} 
+                                            type={'semiBold'} style={styles.contextDescription}/>
+                                        <Text label={params.start} 
+                                            type={'medium'} style={styles.contextDescription}/>
+                                    </View>
 
-                                <View style={[styles.contextDescriptionWrapper, { marginBottom: 12 }]}  >
-                                    <Text label={'Location'} 
-                                        type={'semiBold'} style={styles.contextDescription}/>
-                                    <Text label={params.location} 
-                                        type={'medium'} style={styles.contextDescription}/>
+                                    <View style={[styles.contextDescriptionWrapper, { marginBottom: 12 }]}  >
+                                        <Text label={'Date and Time End'} 
+                                            type={'semiBold'} style={styles.contextDescription}/>
+                                        <Text label={params.end} 
+                                            type={'medium'} style={styles.contextDescription}/>
+                                    </View>
+
+
+                                    { !isEmpty(params.location) && 
+                                        <View style={[styles.contextDescriptionWrapper, { marginBottom: 12 }]}>
+                                            <Text label={'Location'} 
+                                                type={'semiBold'} style={styles.contextDescription}/>
+                                            <Text label={`${params.location}`} 
+                                                type={'medium'} style={styles.contextDescription}/>
+                                        </View>
+                                    }
+
+                                    { !isEmpty(params.link) && 
+                                        <View style={[styles.contextDescriptionWrapper, { marginBottom: 12 }]}>
+                                            <Text label={'Link'} 
+                                                type={'semiBold'} style={styles.contextDescription}/>
+                                            <Text label={`${params.link}`} 
+                                                type={'medium'} style={styles.contextDescription}/>
+                                        </View>
+                                    }
+
                                 </View>
+                            }
+
+                            { activeTabIndex === 'participant' &&
+                                <View style={styles.context}>
+                                    <View style={[styles.contextDescriptionWrapper, { marginBottom: 12 }]}  >
+                                        <Text label={'No Participant Yet'} 
+                                            type={'medium'} style={styles.contextDescription}/>
+                                    </View>
+                                </View>
+                            }
+
+                        </View>
+
+                        {   user.id != params.creator_id &&
+                            <View style={[styles.actions, { paddingBottom: 25 }]}>
+                                <ButtonAction
+                                    loading={false}
+                                    label={'Join'}
+                                    containerStyle={{ backgroundColor: '#16a085' }}
+                                    onPress={onPressJoin}
+                                />
                             </View>
+                        }
 
-                        </View>
-
-                        <View style={[styles.actions, { paddingBottom: 25 }]}>
-                            <ButtonAction
-                                loading={false}
-                                label={'Join'}
-                                containerStyle={{ backgroundColor: '#16a085' }}
-                                onPress={null}
-                            />
-                        </View>
                     </View>
                     
                 </View>
@@ -125,4 +177,14 @@ const EventDetails = (props: any) => {
     )
 }
 
-export default EventDetails;
+const bindAction = (dispatch: any) => {
+    return {}
+}
+
+const mapStateToProps = (state: any) => {
+    return {
+        user: state.auth.user
+    };
+}
+
+export default connect(mapStateToProps, bindAction)(EventDetails);

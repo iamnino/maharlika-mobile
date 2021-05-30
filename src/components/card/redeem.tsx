@@ -122,12 +122,12 @@ const CardRedeem = (props: any) => {
                 <View style={styles.context}>
                     <View style={styles.contextInfo}>
                         <View style={styles.contextWrapper}>
-                            <Text label={'White recycled plastic market tote.'} 
+                            <Text label={data.title} 
                                 lineLimit={2} type={'medium'} style={styles.contextTitle}/>
                         </View>
                     </View>
                     <View style={styles.contextDescriptionWrapper}>
-                        <Text label={'100 pearls'} 
+                        <Text label={data.pearl} 
                             type={'semiBold'} style={styles.contextDescription}/>
                     </View>
                 </View>

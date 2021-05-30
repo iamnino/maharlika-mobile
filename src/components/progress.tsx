@@ -15,11 +15,11 @@ import Text from '../components/text';
 const styles = StyleSheet.create({ 
     container: {
         ...flex.column,
-        width: '75%', 
+        width: '100%', 
     },
     wrapper: {
         width: '100%', 
-        height: 5,
+        height: 8,
         backgroundColor: '#ecf0f1',
         borderRadius: 15,
         position: 'relative',
@@ -28,14 +28,14 @@ const styles = StyleSheet.create({
     },
     label: {
         color: '#6E6E6E',
-        fontSize: IS_MONOBROW ? 10: 12,
+        fontSize: IS_MONOBROW ? 13: 16,
     },
     indicator: {
         position: 'absolute',
         height: '100%',
         width: '15%',
         borderRadius: 15,
-        backgroundColor: '#FF2D55'
+        backgroundColor: '#08C643'
     }
 });
 
