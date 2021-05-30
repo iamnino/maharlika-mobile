@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState, useCallback } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { View, ScrollView } from 'react-native';
 import { IndexPath } from '@ui-kitten/components';
+import moment from 'moment';
 
 // Lodash
 import isNull from 'lodash/isNull';
@@ -16,7 +17,7 @@ import { styles } from './styles';
 import Text from '../../components/text';
 import Header from '../../components/navigation/header';
 import FieldInput from '../../components/field/input';
-import FieldDate from '../../components/field/date';
+import FieldPicker from '../../components/field/picker';
 import FieldUpload from '../../components/field/upload';
 import FieldAddress from '../../components/field/address';
 import ButtonAction from '../../components/button/action';
@@ -71,7 +72,7 @@ const AuthSignUp = (props: any) => {
 
     // Form States
     const [name, setName] = useState('');
-    const [birthday, setBirthday] = useState(null);
+    const [birthday, setBirthday] = useState('');
 
     // Location
     const [addressRegion, setAddressRegion] = useState(new IndexPath(0));
@@ -241,12 +242,14 @@ const AuthSignUp = (props: any) => {
                         />
 
                         {   type === 'individual' &&
-                            <FieldDate 
+                            <FieldPicker 
                                 value={birthday}
-                                onSelect={setBirthday}
+                                onSelect={(date: any) => setBirthday(moment(date).format('ll'))}
                                 placeholder={''}
                                 label={`When's your birthday?`}
                                 enabled={true}
+                                mode={'date'}
+                                maxDate={new Date()}
                             />
                         }
 

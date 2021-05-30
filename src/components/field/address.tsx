@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
 import { FlatList, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
-import { IndexPath, Layout, Select, SelectItem } from '@ui-kitten/components';
+import { Select, SelectItem } from '@ui-kitten/components';
 
 // Components
 import Text from '../text';

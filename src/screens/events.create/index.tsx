@@ -1,8 +1,9 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Pressable, TextInput, View } from 'react-native';
+import { Button, Pressable, TextInput, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import { Datepicker } from '@ui-kitten/components';
+import { IndexPath } from '@ui-kitten/components';
+import moment from 'moment';
 
 import isEmpty from 'lodash/isEmpty';
 import debounce from 'lodash/debounce';
@@ -17,12 +18,13 @@ import ButtonAction from '../../components/button/action';
 
 // Forms
 import FieldInput from '../../components/field/input';
-import FieldDate from '../../components/field/date';
+import FieldPicker from '../../components/field/picker';
 import FieldUpload from '../../components/field/upload';
 import FieldDropdown from '../../components/field/dropdown';
 
 // Services
 import ImageServices from '../../services/image';
+import { generateID } from '../../helpers/utils.helper';
 
 const EventCreate = (props: any) => {
     const { navigation, route }: any = props;
@@ -34,8 +36,9 @@ const EventCreate = (props: any) => {
 
     // Form States
     const [name, setName] = useState<string>('');
-    const [time, setTime] = useState(null);
-    const [date, setDate] = useState(null);
+    const [scope, setScope] = useState(new IndexPath(0));
+    const [startDate, setStartDate] = useState('');
+    const [endDate, setEndDate] = useState('');
     const [location, setLocation] = useState<string>('');
     const [description, setDescription] = useState<string>('');
 
@@ -60,23 +63,44 @@ const EventCreate = (props: any) => {
                         <FieldInput 
                             value={name}
                             onInputChange={setName}
-                            placeholder={'Name'}
+                            // placeholder={'Name'}
                             label={'Name'}
                             enabled={true}
                         />
 
-                        <FieldDate 
-                            label={'Date'}
-                            placeholder={'Select Date'}
-                            value={date}
-                            onSelect={setDate}
+                        <FieldPicker 
+                            label={'Start'}
+                            value={startDate}
+                            onSelect={(date: any) => setStartDate(moment(date).format('lll'))}
+                            enabled={true}
+                            minDate={new Date()}
+                        />
+
+                        <FieldPicker 
+                            label={'End'}
+                            value={endDate}
+                            onSelect={(date: any) => setEndDate(moment(date).format('lll'))}
                             enabled={true}
                         />
+
+                        <FieldDropdown
+                            data={[
+                                { id: generateID(), title: 'National' },
+                                { id: generateID(), title: 'Provincial' },
+                                { id: generateID(), title: 'City' },
+                                { id: generateID(), title: 'Barangay' }
+                            ]} 
+                            value={scope}
+                            onSelect={setScope}
+                            label={'Scope'}
+                            enabled={true}
+                        />
+
 
                         <FieldInput 
                             value={location}
                             onInputChange={setLocation}
-                            placeholder={'Location'}
+                            // placeholder={'Location'}
                             label={'Location'}
                             numberOfLines={2}
                             inputStyle={{ minHeight: 60 }}
@@ -87,7 +111,7 @@ const EventCreate = (props: any) => {
                         <FieldInput 
                             value={description}
                             onInputChange={setDescription}
-                            placeholder={'Description'}
+                            // placeholder={'Description'}
                             label={'Description'}
                             multiline={true}
                             numberOfLines={5}

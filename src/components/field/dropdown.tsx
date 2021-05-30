@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { TextInput, View } from 'react-native';
 import { StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
+import { Select, SelectItem } from '@ui-kitten/components';
 
 // Components
 import Text from '../text';
+
+// Lodash
+import isUndefined from 'lodash/isUndefined';
 
 // Global Styles
 import { flex, shadow } from '../../styles/global.styles';
@@ -14,32 +18,46 @@ export const styles = StyleSheet.create({
         ...flex.column,
         width: '100%',
         // height: 80,
-        marginBottom: 18,
+        marginBottom: 15,
+    },
+    wrapper: {
+        // ...shadow.card,
+        // paddingTop: 5,
+        // borderRadius: 10,
+        // backgroundColor: '#FFFFFF',
     },
     row: {
-        ...shadow.card,
-        borderRadius: 10,
-        backgroundColor: '#FFFFFF'
+        ...flex.row,
+        marginBottom: 12
     },
-    input: {
-        fontSize: 18,
-        lineHeight: 21,
-        paddingHorizontal: 15,
-        paddingTop: 15,
-        paddingBottom: 15,
-   
+    date: {
+        backgroundColor: '#FFFFFF',
+        borderWidth: 0
     },
     label: {
         fontSize: 18,
+        marginBottom: 8
+    },
+    select: {
+        width: '100%',
+        // borderWidth: 1,
+        // borderColor: 'red',
+        ...shadow.card,
+        backgroundColor: '#FFFFFF',
         marginBottom: 12
+
+    },
+    item: {
+        backgroundColor: '#FFFFFF',
     }
 });
 
 const propTypes = {
+    data: PropTypes.any,
     label: PropTypes.string,
     placeholder: PropTypes.string,
     value: PropTypes.any,
-    onInputChange: PropTypes.func,
+    onSelect: PropTypes.func,
     multiline: PropTypes.bool,
     numberOfLines: PropTypes.number,
     inputStyle: PropTypes.any,
@@ -48,10 +66,11 @@ const propTypes = {
 };
 
 const defaultProps = {
+    data: [],
     label: '',
     placeholder: '',
     value: '',
-    onInputChange: null,
+    onSelect: null,
     multiline: false,
     numberOfLines: 1,
     inputStyle: {},
@@ -61,9 +80,11 @@ const defaultProps = {
 
 const FieldDropdown = (props: any) => {
     const { 
+        data,
         label, 
         placeholder, 
         value, 
+        onSelect,
         onInputChange, 
         multiline, 
         numberOfLines,
@@ -72,20 +93,42 @@ const FieldDropdown = (props: any) => {
         secure
     } = props;
 
+
+    const renderItem = (data: any) => {
+        return (
+            <SelectItem 
+                style={styles.item} 
+                title={data.title}
+                key={data.id}
+            />
+        )    
+    }
+
+     // Local States
+     const [_scope, _setScope] = useState<any>('Select Scope');
+
+     useEffect(() => {
+         if(!isUndefined(data[value.row])) {
+             _setScope(data[value.row].title);
+         }
+
+        console.log(data[value.row]);
+
+     }, [value]);
+    
     return (
         <View style={[styles.field, { opacity: enabled ? 1: 0.3 }]}>
             <Text label={label} style={styles.label} type={'semiBold'} />
             <View style={styles.row}>
-                <TextInput 
-                    multiline={multiline}
-                    style={[styles.input, inputStyle]}
-                    placeholder={placeholder}
-                    value={value}
-                    onChangeText={onInputChange}
-                    numberOfLines={numberOfLines}
-                    editable={enabled}
-                    secureTextEntry={secure}
-                />
+                <Select 
+                    selectedIndex={value}
+                    onSelect={onSelect}
+                    style={styles.select} 
+                    size='medium' 
+                    placeholder={'Region'}
+                    value={_scope}>
+                    { data.map(renderItem) }
+                </Select>
             </View>
         </View>
     )

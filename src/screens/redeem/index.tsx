@@ -7,9 +7,7 @@ import { styles } from './styles';
 
 // Components
 import Text from '../../components/text';
-import Progress from '../../components/progress';
-import Tabs from '../../components/tabs';
-import { Action, BackButton } from '../../components/buttons';
+import { BackButton } from '../../components/buttons';
 import ButtonAction from '../../components/button/action';
 
 // Constants
