@@ -25,6 +25,8 @@ import EventOnBoard from './screens/event.onboard';
 import EventCreate from './screens/events.create';
 import EventDetails from './screens/events.details';
 import Redeem from './screens/redeem';
+import RedeemScan from './screens/redeem.scan';
+import RedeemLists from './screens/redeem.lists';
 
 // Auth
 import AuthSignIn from './screens/auth.signin';
@@ -57,6 +59,8 @@ const Router = () => {
                                 <Screen name="Event::Create" component={EventCreate} options={transitionSlide}/>
                                 <Screen name="Event::Details" component={EventDetails} options={transitionSlide}/>
                                 <Screen name="Redeem" component={Redeem} options={transitionSlide}/>
+                                <Screen name="Redeem::Scan" component={RedeemScan} options={transitionSlide}/>
+                                <Screen name="Redeem::Lists" component={RedeemLists} options={transitionSlide}/>
                             </Fragment>
                         }
                         { !isLoggedIn &&

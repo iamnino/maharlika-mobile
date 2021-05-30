@@ -13,7 +13,7 @@ import ButtonAction from '../../components/button/action';
 // Constants
 import Images from '../../constants/images';
 
-const EventDetails = (props: any) => {
+const Redeem = (props: any) => {
     const { navigation, route }: any = props;
     const { params } = route;
 
@@ -26,6 +26,10 @@ const EventDetails = (props: any) => {
 
     const goBack = () => {
         navigation.goBack();
+    }
+
+    const onPressRedeem = () =>  {
+        navigate('Redeem::Scan', params);
     }
 
     return (
@@ -100,7 +104,7 @@ const EventDetails = (props: any) => {
                             loading={false}
                             label={'Redeem'}
                             containerStyle={{ backgroundColor: '#16a085' }}
-                            onPress={null}
+                            onPress={onPressRedeem}
                         />
                         <Pressable style={styles.link} onPress={null}>
                             <Text label={'Send as Gift'} 
@@ -114,4 +118,4 @@ const EventDetails = (props: any) => {
     )
 }
 
-export default EventDetails;
+export default Redeem;

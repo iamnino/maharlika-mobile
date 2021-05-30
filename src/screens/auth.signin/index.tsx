@@ -22,8 +22,6 @@ const AuthSignIn = (props: any) => {
     const { navigation, route }: any = props;
     const { params } = route;
 
-    console.log(params);
-
     // States
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
